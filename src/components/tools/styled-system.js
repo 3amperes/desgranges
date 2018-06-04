@@ -7,3 +7,8 @@ export const Box = styled.div`
   ${fontSize}
   ${color}
 `;
+
+export const Label = styled.label`
+  ${fontSize};
+  display: block;
+`;
