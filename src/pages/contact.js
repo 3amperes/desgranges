@@ -9,7 +9,17 @@ const ContactPage = () => (
       Une dissert ou un haïku, un pamphlet ou un sonnet, vous lire me fera
       plaisir !
     </p>
-    <form name="contact" method="POST" netlify>
+    <form
+      name="contact"
+      method="post"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+    >
+      <p style={{ display: 'none' }}>
+        <label>
+          Don’t fill this out if you're human: <input name="bot-field" />
+        </label>
+      </p>
       <p>
         <Label htmlFor="firstName">Prénom</Label>
         <input type="text" id="firstName" name="firstName" placeholder="John" />
