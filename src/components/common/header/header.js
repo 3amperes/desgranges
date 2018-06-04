@@ -28,7 +28,7 @@ const Header = ({ siteTitle }) => (
         <HeaderInner>
           <button onClick={toggle}>{on ? 'fermer' : 'menu'}</button>
           <Link to="/">{siteTitle}</Link>
-          <Link to="/">contact</Link>
+          <Link to="/contact">contact</Link>
         </HeaderInner>
         <Navigation isOpened={on} onClose={() => set(false)} />
       </div>
