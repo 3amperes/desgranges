@@ -1,56 +1,61 @@
 import React from 'react';
+import styled from 'styled-components';
 import Link from 'gatsby-link';
-import { Label } from '../components/tools/styled-system';
+import { Field, Textearea } from '../components/common';
+import { Box, Text } from '../components/tools';
 
 const ContactPage = () => (
-  <div>
+  <Box maxWidth={250}>
     <h1>écrivez-moi</h1>
-    <p style={{ maxWidth: 170 }}>
+    <Text fontSize="20px">
       Une dissert ou un haïku, un pamphlet ou un sonnet, vous lire me fera
       plaisir !
-    </p>
-    <form
-      name="contact"
-      method="post"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-    >
-      <p style={{ display: 'none' }}>
-        <label>
-          Don’t fill this out if you're human: <input name="bot-field" />
-        </label>
-      </p>
-      <p>
-        <Label htmlFor="firstName">Prénom</Label>
-        <input type="text" id="firstName" name="firstName" placeholder="John" />
-      </p>
-      <p>
-        <Label htmlFor="lastName">Nom</Label>
-        <input type="text" id="lastName" name="lastName" placeholder="Doe" />
-      </p>
-      <p>
-        <Label htmlFor="email">Adresse email</Label>
-        <input
+    </Text>
+    <Box py="20px">
+      <form
+        name="contact"
+        method="post"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <p style={{ display: 'none' }}>
+          <label>
+            Don’t fill this out if you're human: <input name="bot-field" />
+          </label>
+        </p>
+        <Field
+          label="Prénom"
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="John"
+        />
+        <Field
+          label="Nom"
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Doe"
+        />
+        <Field
+          label="Adresse email"
           type="email"
           id="email"
           name="email"
           placeholder="john.doe@company.com"
         />
-      </p>
-      <p>
-        <Label htmlFor="message">Message</Label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Hello Romain,"
-          rows={5}
-        />
-      </p>
-      <p>
+        <Field label="Message">
+          <Textearea
+            id="message"
+            name="message"
+            placeholder="Hello Romain,"
+            rows={5}
+          />
+        </Field>
         <button type="submit">Envoyer</button>
-      </p>
-    </form>
-  </div>
+      </form>
+    </Box>
+  </Box>
 );
 
 export default ContactPage;
