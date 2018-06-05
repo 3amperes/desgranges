@@ -9,10 +9,19 @@ const inputStyle = css`
   width: 100%;
 `;
 
-const Label = ({ text }) => (
-  <Text display="block" fontSize="16px" fontWeight="bold" color="pink" pb="5px">
+const Label = Text.withComponent('label');
+
+const FielLabel = ({ text, htmlFor }) => (
+  <Label
+    htmlFor={htmlFor}
+    display="block"
+    fontSize="16px"
+    fontWeight="bold"
+    color="pink"
+    pb="5px"
+  >
     {text}
-  </Text>
+  </Label>
 );
 
 const Input = styled.input`
@@ -25,11 +34,9 @@ export const Textearea = styled.textarea`
   border: 2px dotted #ccc;
 `;
 
-export const Field = ({ label, children, ...inputProps }) => (
+export const Field = ({ id, label, children, ...othersInputProps }) => (
   <Box mb="15px">
-    <label>
-      <Label text={label} />
-      {children ? children : <Input {...inputProps} />}
-    </label>
+    <FielLabel text={label} htmlFor={id} />
+    {children ? children : <Input id={id} {...othersInputProps} />}
   </Box>
 );
