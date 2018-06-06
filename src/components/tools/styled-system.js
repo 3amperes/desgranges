@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   space,
   width,
+  fontFamily,
   fontSize,
   color,
   lineHeight,
@@ -23,6 +24,7 @@ export const Text = styled.span`
   ${display}
   ${textAlign}
   ${lineHeight}
+  ${fontFamily}
   ${fontSize}
   ${fontWeight}
   ${color}

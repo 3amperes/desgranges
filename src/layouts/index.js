@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Header, Box } from '../components';
 
 import 'sanitize.css/sanitize.css';
+import '../fonts/fonts.css';
 
 const Layout = ({ children, data }) => (
   <Box p={2} pt="50px">

@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'UntitledSerif';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./UntitledSerifWeb-700.woff2') format('woff2'),
+    url('./UntitledSerifWeb-700.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./WorkSans-400.woff2') format('woff2'),
+    url('./WorkSans-400.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('./WorkSans-600.woff2') format('woff2'),
+    url('./WorkSans-600.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'WorkSans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./WorkSans-700.woff2') format('woff2'),
+    url('./WorkSans-700.woff') format('woff');
+}
