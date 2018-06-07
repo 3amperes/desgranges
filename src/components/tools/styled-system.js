@@ -27,5 +27,6 @@ export const Text = styled.span`
   ${fontFamily}
   ${fontSize}
   ${fontWeight}
+  ${letterSpacing}
   ${color}
 `;
