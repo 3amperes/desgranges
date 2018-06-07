@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 
 const IndexPage = () => (
   <div>
-    <h1 style={{ fontFamily: 'UntitledSerif', fontWeight: 'bold' }}>Accueil</h1>
+    <h1>Accueil</h1>
   </div>
 );
 
