@@ -7,11 +7,12 @@ const H3 = Text.withComponent('h3');
 const P = Text.withComponent('p');
 export const Strong = Text.withComponent('strong');
 
-const titleProps = size => ({
+const titleProps = fontSize => ({
   fontFamily: 'UntitledSerif',
   fontWeight: 700,
   lineHeight: 1,
   letterSpacing: 0,
+  fontSize,
   mt: 0,
   mb: '26px',
 });
