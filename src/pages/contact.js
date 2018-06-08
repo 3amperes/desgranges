@@ -7,7 +7,7 @@ import { Box, Text } from '../components/tools';
 const ContactPage = () => (
   <Box maxWidth={250}>
     <h1>écrivez-moi</h1>
-    <Text fontSize="20px">
+    <Text fontSize="20px" fontFamily="WorkSans">
       Une dissert ou un haïku, un pamphlet ou un sonnet, vous lire me fera
       plaisir !
     </Text>
