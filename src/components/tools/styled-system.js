@@ -15,9 +15,11 @@ import {
 export const Box = styled.div`
   ${space}
   ${width}
-  ${fontSize}
   ${color}
+  ${textAlign}
 `;
+
+export const Section = Box.withComponent('section');
 
 export const Text = styled.span`
   ${space}
