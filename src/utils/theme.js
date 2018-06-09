@@ -4,12 +4,12 @@ const colors = {
   gray: {
     light: '#f3f0f0',
     dark: '#1d1d1b',
-    blue: '64b8b4',
+    blue: '#64b8b4',
   },
-  peach: 'f99e78',
-  sea: '2f97a4',
-  salmon: 'fdc2aa',
-  pine: '2c5a40',
+  peach: '#f99e78',
+  sea: '#2f97a4',
+  salmon: '#fdc2aa',
+  pine: '#2c5a40',
 };
 // Breakpoints
 const breakpoints = ['40em', '52em', '64em'];

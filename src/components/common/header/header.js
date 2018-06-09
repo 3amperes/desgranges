@@ -1,8 +1,10 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
+import { themeGet } from 'styled-system';
 import { Toggle } from 'react-powerplug';
 import Navigation from './navigation';
+import Logotype from '../Logotype';
 import { absolute } from '../../../utils/mixins';
 import { ZINDEXBASE, SIZES } from '../../../utils/constants';
 
@@ -26,7 +28,7 @@ const Header = ({ siteTitle }) => (
       <div>
         <HeaderInner>
           <button onClick={toggle}>{on ? 'fermer' : 'menu'}</button>
-          <Link to="/">{siteTitle}</Link>
+          <Logotype color="gray.dark" />
           <Link to="/contact">contact</Link>
         </HeaderInner>
         <Navigation isOpened={on} onClose={() => set(false)} />
