@@ -1689,6 +1689,14 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+clean-tag@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/clean-tag/-/clean-tag-1.0.4.tgz#9b407b306fadce114e6dffa774e7b61bdfc0c190"
+  dependencies:
+    html-tags "^2.0.0"
+    react ">=16.0.0"
+    styled-system ">=1.1 || >=2.0"
+
 cli-boxes@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
@@ -3193,17 +3201,18 @@ gatsby-plugin-react-helmet@^2.0.10:
   dependencies:
     babel-runtime "^6.26.0"
 
-gatsby-plugin-styled-components@^2.0.11:
-  version "2.0.11"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-2.0.11.tgz#c3d3438c7970bbcc116e821fb966687098bdaf57"
-  dependencies:
-    babel-runtime "^6.26.0"
 gatsby-plugin-robots-txt@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-robots-txt/-/gatsby-plugin-robots-txt-1.0.2.tgz#6e32aade41adb064a41286e7d90cedabe6466d1b"
   dependencies:
     babel-runtime "^6.26.0"
     generate-robotstxt "^5.0.5"
+
+gatsby-plugin-styled-components@^2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-styled-components/-/gatsby-plugin-styled-components-2.0.11.tgz#c3d3438c7970bbcc116e821fb966687098bdaf57"
+  dependencies:
+    babel-runtime "^6.26.0"
 
 gatsby-react-router-scroll@^1.0.17:
   version "1.0.17"
@@ -3696,6 +3705,10 @@ html-comment-regex@^1.1.0:
 html-entities@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.1.tgz#0df29351f0721163515dfb9e5543e5f6eed5162f"
+
+html-tags@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-2.0.0.tgz#10b30a386085f43cede353cc8fa7cb0deeea668b"
 
 htmlparser2@^3.9.1:
   version "3.9.2"
@@ -6444,6 +6457,15 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
+react@>=16.0.0:
+  version "16.4.0"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.4.0.tgz#402c2db83335336fba1962c08b98c6272617d585"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.0"
+
 react@^15.6.0:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
@@ -7571,7 +7593,7 @@ style-loader@^0.13.0:
   dependencies:
     loader-utils "^1.0.2"
 
-styled-components@^3.3.2:
+styled-components@>=3.0.0, styled-components@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.3.2.tgz#087b96830ee3d60d9a8b5ef17c132b4f29cc71df"
   dependencies:
@@ -7586,7 +7608,7 @@ styled-components@^3.3.2:
     stylis-rule-sheet "^0.0.10"
     supports-color "^3.2.3"
 
-styled-system@^2.2.5:
+"styled-system@>=1.1 || >=2.0", styled-system@>=2.0.1, styled-system@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/styled-system/-/styled-system-2.2.5.tgz#95f1e2c2c9ddc5c462cc56237cf039aa9ecfd27d"
   dependencies:
@@ -7635,6 +7657,14 @@ symbol-observable@^1.0.2, symbol-observable@^1.0.3:
 symbol@^0.2.1:
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/symbol/-/symbol-0.2.3.tgz#3b9873b8a901e47c6efe21526a3ac372ef28bbc7"
+
+system-components@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/system-components/-/system-components-2.0.3.tgz#39fa5051c7f276f6b7b0ea990e5fdaef98949343"
+  dependencies:
+    clean-tag "^1.0.3"
+    styled-components ">=3.0.0"
+    styled-system ">=2.0.1"
 
 systemjs-builder@0.16.13:
   version "0.16.13"

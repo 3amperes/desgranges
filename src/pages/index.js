@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Box, Section, Title, Paragraph, Strong } from '../components/tools';
+import { Box, Text, Heading, Paragraph } from '../components/tools';
 import { SIZES } from '../utils/constants';
 
 const HeroWrapper = styled.header`
@@ -13,7 +13,7 @@ const HeroWrapper = styled.header`
 const Hero = ({ children, title }) => (
   <HeroWrapper>
     <Box textAlign="center">
-      <Title isMain>{title}</Title>
+      <Heading fontSize={9}>{title}</Heading>
       {children}
     </Box>
   </HeroWrapper>
@@ -23,19 +23,23 @@ const IndexPage = () => (
   <div>
     <Hero title="Découvrez mon travail">
       <Paragraph>
-        <Strong fontWeight="700">Vous êtes une entreprise,</Strong>
+        <Text is="strong" fontWeight="700">
+          Vous êtes une entreprise,
+        </Text>
         <br />
         et vous souhaitez revoir ou décliner vos supports de communication print
         et web ?
       </Paragraph>
       <Paragraph>
-        <Strong fontWeight="700">Vous êtes une agence,</Strong>
+        <Text is="strong" fontWeight="700">
+          Vous êtes une agence,
+        </Text>
         <br />
         avec des besoins en création et/ou exécution print et web ?
       </Paragraph>
     </Hero>
-    <Section mb={6}>
-      <Title>Marquer et se faire remarquer</Title>
+    <Box mb={6}>
+      <Heading is="h2">Marquer et se faire remarquer</Heading>
       <Paragraph isBold>
         Pour une entreprise l’image est primordiale, alors comment bien diffuser
         votre message et vos valeurs ?
@@ -46,9 +50,9 @@ const IndexPage = () => (
         internet, une documentation print et pdf, des slides de présentation…
         autant de moyens pour vous de diffuser l’adn de votre entreprise.
       </Paragraph>
-    </Section>
-    <Section mb={6}>
-      <Title>Votre guide</Title>
+    </Box>
+    <Box mb={6}>
+      <Heading is="h2">Votre guide</Heading>
       <Paragraph isBold>
         C’est mieux de savoir à qui on parle, ou plutôt qui vous parle !
       </Paragraph>
@@ -57,10 +61,12 @@ const IndexPage = () => (
         web à Rennes. Je vous accompagne sur la création graphique de tous vos
         supports de communication.
       </Paragraph>
-    </Section>
-    <Section>
-      <Title textAlign="center">Et donc voilà ce que ça peut donner :</Title>
-    </Section>
+    </Box>
+    <Box>
+      <Heading is="h2" textAlign="center">
+        Et donc voilà ce que ça peut donner :
+      </Heading>
+    </Box>
   </div>
 );
 
