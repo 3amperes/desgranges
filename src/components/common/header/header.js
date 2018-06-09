@@ -4,15 +4,14 @@ import styled from 'styled-components';
 import { Toggle } from 'react-powerplug';
 import Navigation from './navigation';
 import { absolute } from '../../../utils/mixins';
-
-import { ZINDEXBASE } from '../../../utils/constants';
+import { ZINDEXBASE, SIZES } from '../../../utils/constants';
 
 const HeaderInner = styled.header`
   ${absolute({ top: 0, left: 0 })};
-  height: 50px;
+  height: ${SIZES.NAVBAR}px;
   width: 100%;
 
-  padding: 10px;
+  padding: 0 60px;
 
   display: flex;
   justify-content: space-between;

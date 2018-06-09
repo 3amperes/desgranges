@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectGlobal } from 'styled-components';
+import { injectGlobal, ThemeProvider } from 'styled-components';
+import theme from '../utils/theme';
 import { Header, Box } from '../components';
 import { getFontFace } from '../utils/mixins';
 
 // sanitize styles
 import 'sanitize.css/sanitize.css';
 
-// definr fonts
+// define fonts
 injectGlobal`
   ${getFontFace('WorkSans')};
   ${getFontFace('WorkSans', 'SemiBold')};
@@ -19,11 +20,19 @@ injectGlobal`
   }
 `;
 
-const Layout = ({ children, data }) => (
-  <Box p={2} pt="50px">
-    <Header siteTitle={data.site.siteMetadata.title} />
-    <div> {children()} </div>
+const MainWrapper = ({ children }) => (
+  <Box p={2} pt="120px" bg="gray.light">
+    {children}
   </Box>
+);
+
+const Layout = ({ children, data }) => (
+  <ThemeProvider theme={theme}>
+    <MainWrapper>
+      <Header siteTitle={data.site.siteMetadata.title} />
+      <div> {children()} </div>
+    </MainWrapper>
+  </ThemeProvider>
 );
 
 Layout.propTypes = {

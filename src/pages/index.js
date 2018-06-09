@@ -1,10 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Box, Section, Title, Paragraph, Strong } from '../components/tools';
+import { SIZES } from '../utils/constants';
+
+const HeroWrapper = styled.header`
+  min-height: calc(100vh - ${SIZES.NAVBAR}px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Hero = ({ children, title }) => (
+  <HeroWrapper>
+    <Box textAlign="center">
+      <Title isMain>{title}</Title>
+      {children}
+    </Box>
+  </HeroWrapper>
+);
 
 const IndexPage = () => (
   <div>
-    <Box textAlign="center" py="100px">
-      <Title isMain>Découvrez mon travail</Title>
+    <Hero title="Découvrez mon travail">
       <Paragraph>
         <Strong fontWeight="700">Vous êtes une entreprise,</Strong>
         <br />
@@ -16,8 +33,8 @@ const IndexPage = () => (
         <br />
         avec des besoins en création et/ou exécution print et web ?
       </Paragraph>
-    </Box>
-    <Section mb="50px">
+    </Hero>
+    <Section mb={6}>
       <Title>Marquer et se faire remarquer</Title>
       <Paragraph isBold>
         Pour une entreprise l’image est primordiale, alors comment bien diffuser
@@ -30,7 +47,7 @@ const IndexPage = () => (
         autant de moyens pour vous de diffuser l’adn de votre entreprise.
       </Paragraph>
     </Section>
-    <Section mb="50px">
+    <Section mb={6}>
       <Title>Votre guide</Title>
       <Paragraph isBold>
         C’est mieux de savoir à qui on parle, ou plutôt qui vous parle !

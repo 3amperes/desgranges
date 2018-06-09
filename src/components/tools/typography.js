@@ -10,7 +10,7 @@ export const Strong = Text.withComponent('strong');
 const titleProps = fontSize => ({
   fontFamily: 'UntitledSerif',
   fontWeight: 700,
-  lineHeight: 1,
+  lineHeight: 0,
   letterSpacing: 0,
   fontSize,
   mt: 0,
@@ -18,23 +18,23 @@ const titleProps = fontSize => ({
 });
 
 export const Title = ({ children, isMain, ...otherProps }) => (
-  <H1 {...titleProps(isMain ? '64px' : '52px')} {...otherProps}>
+  <H1 {...titleProps(isMain ? 9 : 8)} {...otherProps}>
     {children}
   </H1>
 );
 
 export const SubTitle = ({ children, ...otherProps }) => (
-  <H2 {...titleProps('38px')} {...otherProps}>
+  <H2 {...titleProps(7)} {...otherProps}>
     {children}
   </H2>
 );
 
-export const Paragraph = ({ children, mb = '26px', isBold, ...props }) => (
+export const Paragraph = ({ children, mb = 3, isBold, ...props }) => (
   <P
     display="block"
     mb={mb}
-    fontSize="16px"
-    lineHeight="26px"
+    fontSize={2}
+    lineHeight={1}
     fontWeight={isBold ? 700 : 400}
     letterSpacing="0"
     {...props}
