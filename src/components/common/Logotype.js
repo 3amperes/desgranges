@@ -1,9 +1,13 @@
 import React from 'react';
 import { Box } from '../tools';
 
-const Logotype = ({ width = '120px', color = 'currentColor' }) => {
+const Logotype = ({
+  width = '120px',
+  color = 'currentColor',
+  ...otherProps
+}) => {
   return (
-    <Box width={width} color={color}>
+    <Box width={width} color={color} {...otherProps}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"

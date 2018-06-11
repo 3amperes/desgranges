@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 import theme from '../utils/theme';
-import { Header, Box } from '../components';
+import { Header, Box, Footer } from '../components';
 import { getFontFace } from '../utils/mixins';
 
 // sanitize styles
@@ -21,7 +21,7 @@ injectGlobal`
 `;
 
 const MainWrapper = ({ children }) => (
-  <Box p={2} pt="120px" bg="gray.light">
+  <Box p={0} pt="120px" bg="gray.light">
     {children}
   </Box>
 );
@@ -31,6 +31,7 @@ const Layout = ({ children, data }) => (
     <MainWrapper>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div> {children()} </div>
+      <Footer />
     </MainWrapper>
   </ThemeProvider>
 );

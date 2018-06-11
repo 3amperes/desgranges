@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Grid, Cell } from 'styled-css-grid';
 import { Box, Text, Heading, Paragraph } from '../components/tools';
 import { SIZES } from '../utils/constants';
 
@@ -11,34 +12,41 @@ const HeroWrapper = styled.header`
 `;
 
 const Hero = ({ children, title }) => (
-  <HeroWrapper>
+  <header>
     <Box textAlign="center">
       <Heading fontSize={9}>{title}</Heading>
       {children}
     </Box>
-  </HeroWrapper>
+  </header>
 );
 
 const IndexPage = () => (
-  <div>
-    <Hero title="Découvrez mon travail">
-      <Paragraph>
-        <Text is="strong" fontWeight="700">
-          Vous êtes une entreprise,
-        </Text>
-        <br />
-        et vous souhaitez revoir ou décliner vos supports de communication print
-        et web ?
-      </Paragraph>
-      <Paragraph>
-        <Text is="strong" fontWeight="700">
-          Vous êtes une agence,
-        </Text>
-        <br />
-        avec des besoins en création et/ou exécution print et web ?
-      </Paragraph>
-    </Hero>
-    <Box mb={6}>
+  <Grid
+    rows={'100vh repeat(8, minmax(100px,auto)) auto'}
+    columns={'repeat(12, 70px)'}
+    gap="38px"
+    justifyContent="center"
+  >
+    <Cell width={8} left={3} middle>
+      <Hero title="Découvrez mon travail">
+        <Paragraph>
+          <Text is="strong" fontWeight="700">
+            Vous êtes une entreprise,
+          </Text>
+          <br />
+          et vous souhaitez revoir ou décliner vos supports de communication
+          print et web ?
+        </Paragraph>
+        <Paragraph>
+          <Text is="strong" fontWeight="700">
+            Vous êtes une agence,
+          </Text>
+          <br />
+          avec des besoins en création et/ou exécution print et web ?
+        </Paragraph>
+      </Hero>
+    </Cell>
+    <Cell width={8} left={3} height={2}>
       <Heading is="h2">Marquer et se faire remarquer</Heading>
       <Paragraph isBold>
         Pour une entreprise l’image est primordiale, alors comment bien diffuser
@@ -50,8 +58,9 @@ const IndexPage = () => (
         internet, une documentation print et pdf, des slides de présentation…
         autant de moyens pour vous de diffuser l’adn de votre entreprise.
       </Paragraph>
-    </Box>
-    <Box mb={6}>
+    </Cell>
+    <Cell width={12} />
+    <Cell width={8} left={3} height={2}>
       <Heading is="h2">Votre guide</Heading>
       <Paragraph isBold>
         C’est mieux de savoir à qui on parle, ou plutôt qui vous parle !
@@ -61,13 +70,21 @@ const IndexPage = () => (
         web à Rennes. Je vous accompagne sur la création graphique de tous vos
         supports de communication.
       </Paragraph>
-    </Box>
-    <Box>
+    </Cell>
+    <Cell width={12} />
+    <Cell width={8} left={3} height={2}>
       <Heading is="h2" textAlign="center">
         Et donc voilà ce que ça peut donner :
       </Heading>
-    </Box>
-  </div>
+    </Cell>
+    <Cell width={12} />
+    <Cell width={12} center height={2}>
+      <Heading is="h2" textAlign="center">
+        Envie d'en parler ?
+      </Heading>
+    </Cell>
+    <Cell width={12} />
+  </Grid>
 );
 
 export default IndexPage;
