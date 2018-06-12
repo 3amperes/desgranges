@@ -1,6 +1,7 @@
-import Footer from './footer';
+import Header from './Header';
+import Navigation from './Navigation';
+import Footer from './Footer';
 
-export * from './header/';
 export * from './form/index';
 
-export { Footer };
+export { Header, Navigation, Footer };

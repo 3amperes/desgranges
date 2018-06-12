@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectGlobal, ThemeProvider } from 'styled-components';
+import { Toggle } from 'react-powerplug';
 import theme from '../utils/theme';
-import { Header, Box, Footer } from '../components';
+import { Header, Box, Footer, Navigation } from '../components';
 import { getFontFace } from '../utils/mixins';
 
 // sanitize styles
@@ -20,19 +21,23 @@ injectGlobal`
   }
 `;
 
-const MainWrapper = ({ children }) => (
-  <Box p={0} pt="120px" bg="gray.light">
-    {children}
-  </Box>
-);
+const MainWrapper = Box.extend`
+  height: ${props => (props.overflowHidden ? '100vh' : 'auto')};
+  overflow-y: ${props => (props.overflowHidden ? 'hidden' : 'visible')};
+`;
 
 const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
-    <MainWrapper>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <div> {children()} </div>
-      <Footer />
-    </MainWrapper>
+    <Toggle initial={false}>
+      {({ on, toggle, set }) => (
+        <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
+          <Header onToggleMenu={toggle} isMenuOpened={on} />
+          <div> {children()} </div>
+          <Footer />
+          <Navigation isOpened={on} onClose={() => set(false)} />
+        </MainWrapper>
+      )}
+    </Toggle>
   </ThemeProvider>
 );
 

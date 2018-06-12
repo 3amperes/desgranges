@@ -72,16 +72,12 @@ const IndexPage = () => (
       </Paragraph>
     </Cell>
     <Cell width={12} />
-    <Cell width={8} left={3} height={2}>
-      <Heading is="h2" textAlign="center">
-        Et donc voilà ce que ça peut donner :
-      </Heading>
+    <Cell center width={8} left={3} height={2}>
+      <Heading is="h2">Et donc voilà ce que ça peut donner :</Heading>
     </Cell>
     <Cell width={12} />
-    <Cell width={12} center height={2}>
-      <Heading is="h2" textAlign="center">
-        Envie d'en parler ?
-      </Heading>
+    <Cell center width={12} height={2}>
+      <Heading is="h2">Envie d'en parler ?</Heading>
     </Cell>
     <Cell width={12} />
   </Grid>

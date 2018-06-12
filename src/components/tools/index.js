@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+import GLink from 'gatsby-link';
 import system from 'system-components';
 
 export const Box = system('space', 'width', 'color', 'textAlign');
@@ -40,3 +42,9 @@ export const Paragraph = ({ children, mb = 3, isBold, ...props }) => (
     {children}
   </Text>
 );
+
+export const Link = styled(GLink)`
+  text-decoration: none;
+  color: currentColor;
+  text-transform: uppercase;
+`;
