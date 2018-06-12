@@ -1,10 +1,9 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import { themeGet } from 'styled-system';
-import Logotype from './Logotype';
-import { absolute } from '../../utils/mixins';
-import { ZINDEXBASE, SIZES } from '../../utils/constants';
+import Logotype from '../Logotype';
+import { absolute } from '../../../utils/mixins';
+import { ZINDEXBASE, SIZES } from '../../../utils/constants';
 
 const HeaderInner = styled.header`
   ${absolute({ top: 0, left: 0 })};

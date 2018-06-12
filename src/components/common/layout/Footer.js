@@ -1,6 +1,6 @@
 import React from 'react';
-import Logotype from './Logotype';
-import { Box, Text } from '../tools';
+import Logotype from '../Logotype';
+import { Box, Text } from '../../tools';
 
 const Footer = () => (
   <Box bg="sea" color="white" py={6} textAlign="center">
