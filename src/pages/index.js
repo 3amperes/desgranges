@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
 import { Box, Text, Heading, Paragraph } from 'components/tools';
+import { Button } from 'components/common';
 import { SIZES } from 'utils/constants';
 
 const HeroWrapper = styled.header`
@@ -23,7 +24,7 @@ const Hero = ({ children, title }) => (
 const IndexPage = () => (
   <Grid
     rows={'100vh repeat(8, minmax(100px,auto)) auto'}
-    columns={'repeat(12, 70px)'}
+    columns={'repeat(12, minmax(30px, 70px))'}
     gap="38px"
     justifyContent="center"
   >
@@ -44,11 +45,14 @@ const IndexPage = () => (
           <br />
           avec des besoins en création et/ou exécution print et web ?
         </Paragraph>
+        <Box mt={4}>
+          <Button label="suivez le guide" />
+        </Box>
       </Hero>
     </Cell>
     <Cell width={8} left={3} height={2}>
       <Heading is="h2">Marquer et se faire remarquer</Heading>
-      <Paragraph isBold>
+      <Paragraph fontWeight="700">
         Pour une entreprise l’image est primordiale, alors comment bien diffuser
         votre message et vos valeurs ?
       </Paragraph>
@@ -62,7 +66,7 @@ const IndexPage = () => (
     <Cell width={12} />
     <Cell width={8} left={3} height={2}>
       <Heading is="h2">Votre guide</Heading>
-      <Paragraph isBold>
+      <Paragraph fontWeight="700">
         C’est mieux de savoir à qui on parle, ou plutôt qui vous parle !
       </Paragraph>
       <Paragraph>

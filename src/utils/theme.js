@@ -19,6 +19,7 @@ const breakpoints = ['40em', '52em', '64em'];
 
 // Typographic Scale (numbers are converted to px values)
 const fontSizes = [12, 14, 16, 22, 24, 26, 32, 38, 52, 64];
+const fontWeights = [400, 600, 700];
 const lineHeights = [1, 1.625];
 
 // Spacing Scale (used for margin and padding)

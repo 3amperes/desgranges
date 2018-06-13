@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
-import Logotype from '../Logotype';
+import { Button, Logotype } from 'components/common';
 import { absolute } from 'utils/mixins';
 import { ZINDEXBASE, SIZES } from 'utils/constants';
 
@@ -21,9 +21,9 @@ const HeaderInner = styled.header`
 
 const Header = ({ isMenuOpened, onToggleMenu }) => (
   <HeaderInner>
-    <button onClick={onToggleMenu}>{isMenuOpened ? 'fermer' : 'menu'}</button>
+    <Button onClick={onToggleMenu} label={isMenuOpened ? 'fermer' : 'menu'} />
     <Logotype color="gray.dark" />
-    <Link to="/contact">contact</Link>
+    <Button label="contact" />
   </HeaderInner>
 );
 

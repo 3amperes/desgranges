@@ -27,10 +27,11 @@ const NavItem = ({ label, ...linkProps }) => {
       is="li"
       textAlign="center"
       mb={4}
+      fontWeight="700"
       lineHeight="64px"
       letterSpacing="4px"
       fontSize={3}
-      fontWeight="700"
+      isUppercase
     >
       <Link {...linkProps}>{label}</Link>
     </Text>

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import fonts from '../fonts';
+import { TRANSITION } from 'utils/constants';
 
 export const getFontFace = (
   name,
@@ -44,6 +45,18 @@ export const absolute = ({
   left: ${left};
 `;
 
+export const transition = ({
+  property,
+  duration = TRANSITION.DURATION,
+  timingFunction = TRANSITION.FUNCTION,
+  delay = 0,
+}) => css`
+  transition-property: ${property};
+  transition-duration: ${duration};
+  transition-timing-function: ${timingFunction};
+  transition-delay: ${delay};
+`;
+
 export const resetSpace = () => css`
   margin: 0;
   padding: 0;
@@ -51,4 +64,24 @@ export const resetSpace = () => css`
 export const resetList = () => css`
   ${resetSpace};
   list-style: none;
+`;
+export const resetButton = () => css`
+  ${resetSpace};
+  border: none;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  -webkit-appearance: none;
 `;
