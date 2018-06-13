@@ -1,7 +1,7 @@
 import React from 'react';
 import { navigateTo } from 'gatsby-link';
-import { Field, Textearea } from '../../components/common';
-import { Box, Text } from '../../components/tools';
+import { Field, Textearea } from 'components/common';
+import { Box, Text } from 'components/tools';
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Cell } from 'styled-css-grid';
-import { Box, Text, Heading, Paragraph } from '../components/tools';
-import { SIZES } from '../utils/constants';
+import { Box, Text, Heading, Paragraph } from 'components/tools';
+import { SIZES } from 'utils/constants';
 
 const HeroWrapper = styled.header`
   min-height: calc(100vh - ${SIZES.NAVBAR}px);

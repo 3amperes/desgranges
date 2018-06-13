@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { color, themeGet } from 'styled-system';
 import { Grid, Cell } from 'styled-css-grid';
 import { Box, Text, Link } from '../../tools';
-import { absolute, resetList } from '../../../utils/mixins';
-import { ZINDEXBASE } from '../../../utils/constants';
+import { absolute, resetList } from 'utils/mixins';
+import { ZINDEXBASE } from 'utils/constants';
 
 const NavWrapper = styled.nav`
   position: fixed;
