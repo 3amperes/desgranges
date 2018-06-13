@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { injectGlobal, ThemeProvider } from 'styled-components';
 import { Toggle } from 'react-powerplug';
 import theme from 'utils/theme';
-import { Header, Box, Footer, Navigation } from 'components/tools';
+import { Header, Footer, Navigation } from 'components/common';
+import { Box } from 'components/tools';
 import { getFontFace } from 'utils/mixins';
 
 // sanitize styles
