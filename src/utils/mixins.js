@@ -41,7 +41,7 @@ export const absolute = ({
   position: absolute;
   top: ${top};
   right: ${right};
-  bottom: ${top};
+  bottom: ${bottom};
   left: ${left};
 `;
 

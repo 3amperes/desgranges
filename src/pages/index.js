@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Cell } from 'styled-css-grid';
-import { Box, Text, Heading, Paragraph } from 'components/tools';
+import { Cell } from 'styled-css-grid';
+import { Box, Text, Heading, Paragraph, GridContainer } from 'components/tools';
 import { Button } from 'components/common';
 import { SIZES } from 'utils/constants';
 
@@ -22,12 +22,7 @@ const Hero = ({ children, title }) => (
 );
 
 const IndexPage = () => (
-  <Grid
-    rows={'100vh repeat(8, minmax(100px,auto)) auto'}
-    columns={'repeat(12, minmax(30px, 70px))'}
-    gap="38px"
-    justifyContent="center"
-  >
+  <GridContainer rows={'100vh repeat(8, minmax(100px,auto)) auto'}>
     <Cell width={8} left={3} middle>
       <Hero title="Découvrez mon travail">
         <Paragraph>
@@ -84,7 +79,7 @@ const IndexPage = () => (
       <Heading is="h2">Envie d'en parler ?</Heading>
     </Cell>
     <Cell width={12} />
-  </Grid>
+  </GridContainer>
 );
 
 export default IndexPage;

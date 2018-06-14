@@ -18,9 +18,7 @@ const ButtonWrapper = styled.button`
   span {
     position: relative;
     z-index: 10;
-    transform: scale(${props => (props.isHover ? 0.8 : 1)});
-    transform-origin: center;
-    ${transition({ property: 'all', duration: '350ms' })};
+    ${transition({ property: 'color' })};
   }
 `;
 

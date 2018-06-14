@@ -33,7 +33,7 @@ const Layout = ({ children, data }) => (
       {({ on, toggle, set }) => (
         <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
           <Header onToggleMenu={toggle} isMenuOpened={on} />
-          <div> {children()} </div>
+          <Box pb={6}> {children()} </Box>
           <Footer />
           <Navigation isOpened={on} onClose={() => set(false)} />
         </MainWrapper>

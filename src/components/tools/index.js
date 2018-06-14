@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import GLink from 'gatsby-link';
 import system from 'system-components';
+import { Grid } from 'styled-css-grid';
+import { GRID } from 'utils/constants';
 
 export const Box = system(
   { blacklist: ['overflowHidden'] },
@@ -50,3 +52,14 @@ export const Link = styled(GLink)`
   text-decoration: none;
   color: currentColor;
 `;
+
+export const GridContainer = ({ children, ...props }) => (
+  <Grid
+    columns={GRID.COLUMNS}
+    gap={GRID.GAP}
+    justifyContent="center"
+    {...props}
+  >
+    {children}
+  </Grid>
+);
