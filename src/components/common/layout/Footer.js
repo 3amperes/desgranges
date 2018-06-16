@@ -1,18 +1,61 @@
 import React from 'react';
+import styled from 'styled-components';
 import Logotype from '../Logotype';
 import { Cell } from 'styled-css-grid';
 import { Box, Text } from 'components/tools';
 import { Container } from 'components/common';
+import { resetLink, transition } from 'utils/mixins';
+import { themeGet } from 'styled-system';
+
+const Link = styled.a`
+  ${resetLink};
+  font-size: ${themeGet('fontSizes.1', '14')}px;
+  font-weight: 600;
+  letter-spacing: ${props => (props.isUppercase ? 2 : 0)}px;
+  text-transform: ${props => (props.isUppercase ? 'uppercase' : 'none')};
+
+  ${transition({ property: 'color' })};
+
+  &:hover,
+  &:focus {
+    color: ${themeGet('colors.black')};
+  }
+`;
 
 const Footer = () => (
   <Box bg="sea" color="white">
-    <Container height="400px">
-      <Cell width={12} center>
-        <Logotype mx="auto" mb={4} color="gray.dark" />
+    <Container
+      height="400px"
+      alignContent="center"
+      columns={'repeat(3, auto)'}
+      gap="50px"
+    >
+      <Cell width={3} center>
+        <Logotype color="gray.dark" />
+      </Cell>
+      <Cell width={3} center>
         <Text fontSize={1} lineHeight={1}>
-          Romain Desgranges <br /> romain.desgranges@gmail.com <br /> 06 59 24
-          73 17
+          Romain Desgranges <br />{' '}
+          <Link href="mailto:romain.desgranges@gmail.com">
+            romain.desgranges@gmail.com
+          </Link>
+          <br /> 06 59 24 73 17
         </Text>
+      </Cell>
+      <Cell center right>
+        <Link isUppercase href="http://www.linkedin.com">
+          Linkedin
+        </Link>
+      </Cell>
+      <Cell center>
+        <Link isUppercase href="http://www.twitter.com">
+          Twitter
+        </Link>
+      </Cell>
+      <Cell center>
+        <Link isUppercase href="http://www.instagram.com">
+          instagram
+        </Link>
       </Cell>
     </Container>
   </Box>

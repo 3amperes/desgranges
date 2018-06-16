@@ -4,6 +4,7 @@ import GLink from 'gatsby-link';
 import { Grid } from 'styled-css-grid';
 import { Box, Text, Heading } from 'components/tools';
 import { GRID } from 'utils/constants';
+import { resetLink } from 'utils/mixins';
 
 export const PageHeader = ({ children, title, isBig }) => (
   <header>
@@ -47,6 +48,5 @@ export const SurTitle = ({ label }) => (
 );
 
 export const Link = styled(GLink)`
-  text-decoration: none;
-  color: currentColor;
+  ${resetLink};
 `;

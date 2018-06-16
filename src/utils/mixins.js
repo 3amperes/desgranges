@@ -61,6 +61,10 @@ export const resetSpace = () => css`
   margin: 0;
   padding: 0;
 `;
+export const resetLink = () => css`
+  text-decoration: none;
+  color: currentColor;
+`;
 export const resetList = () => css`
   ${resetSpace};
   list-style: none;
