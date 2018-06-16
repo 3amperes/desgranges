@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { color, themeGet } from 'styled-system';
 import { Cell } from 'styled-css-grid';
-import { Text, Link, GridContainer } from 'components/tools';
+import { Text } from 'components/tools';
+import { Container, Link } from 'components/common';
 import { ZINDEXBASE } from 'utils/constants';
 
 const NavWrapper = styled.nav`
@@ -29,7 +30,7 @@ const NavItem = ({ label, ...linkProps }) => {
 const Navigation = ({ isOpened, onClose }) => {
   return isOpened ? (
     <NavWrapper color="black" bg="salmon">
-      <GridContainer
+      <Container
         height="100%"
         flow="column"
         rows="repeat(5, 64px)"
@@ -40,7 +41,7 @@ const Navigation = ({ isOpened, onClose }) => {
         <NavItem onClick={onClose} to="/skills" label="Compétences" />
         <NavItem onClick={onClose} to="/about" label="À propos" />
         <NavItem onClick={onClose} to="/contact" label="Contact" />
-      </GridContainer>
+      </Container>
     </NavWrapper>
   ) : null;
 };

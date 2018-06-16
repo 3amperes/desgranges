@@ -1,2 +1,2 @@
-export * from './tools';
+export * from './global';
 export * from './common';

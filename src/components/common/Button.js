@@ -7,8 +7,8 @@ const ButtonWrapper = styled.button`
   ${resetButton};
   cursor: pointer;
   position: relative;
-  height: 25px;
-  padding: 2px 0 5px 0;
+  height: 30px;
+  padding: 5px 0 9px 0;
   overflow: hidden;
 
   &:focus {
@@ -58,11 +58,11 @@ class Button extends Component {
           fontWeight="600"
           lineHeight="16px"
           letterSpacing="2px"
-          color={isHover ? 'white' : 'black'}
+          color="black"
         >
           {label}
         </Text>
-        <ButtonBorder bg="peach" offset={isHover ? 0 : 20} />
+        <ButtonBorder bg="peach" offset={isHover ? 16 : 25} />
       </ButtonWrapper>
     );
   }

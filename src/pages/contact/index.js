@@ -1,8 +1,14 @@
 import React from 'react';
 import { navigateTo } from 'gatsby-link';
 import { Cell } from 'styled-css-grid';
-import { Field, Textearea } from 'components/common';
-import { Box, Text, Heading, Paragraph, GridContainer } from 'components/tools';
+import {
+  Field,
+  Textearea,
+  Container,
+  Paragraph,
+  PageHeader,
+} from 'components/common';
+import { Box, Text, Heading } from 'components/tools';
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -83,15 +89,16 @@ class ContactPage extends React.Component {
     const { model, errors, submitted } = this.state;
 
     return (
-      <GridContainer alignItems="center">
+      <Container height="85vh">
         <Cell width={4} left={5}>
-          <Box textAlign="center">
-            <Heading>Écrivez-moi</Heading>
+          <PageHeader title="Écrivez-moi">
             <Paragraph>
-              Une dissert ou un haïku,<br /> un pamphlet ou un sonnet,<br />{' '}
+              Une dissert ou un haïku,<br /> un pamphlet ou un sonnet,<br />
               vous lire me fera plaisir !
             </Paragraph>
-          </Box>
+          </PageHeader>
+        </Cell>
+        <Cell width={4} left={5}>
           <Box py="20px">
             <form
               name="contact"
@@ -179,7 +186,7 @@ class ContactPage extends React.Component {
             </form>
           </Box>
         </Cell>
-      </GridContainer>
+      </Container>
     );
   }
 }

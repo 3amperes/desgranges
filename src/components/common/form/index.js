@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Box, Text } from '../../tools';
+import { Box, Text } from 'components/tools';
 
 const inputStyle = css`
   border: none;
@@ -9,19 +9,18 @@ const inputStyle = css`
   width: 100%;
 `;
 
-const Label = Text.withComponent('label');
-
 const FielLabel = ({ text, htmlFor }) => (
-  <Label
+  <Text
     htmlFor={htmlFor}
     display="block"
     fontSize="16px"
     fontWeight="bold"
     color="pink"
     pb="5px"
+    is="label"
   >
     {text}
-  </Label>
+  </Text>
 );
 
 const Input = styled.input`
