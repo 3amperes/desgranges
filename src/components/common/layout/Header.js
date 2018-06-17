@@ -12,7 +12,7 @@ const HeaderInner = styled.header`
   height: ${SIZES.NAVBAR}px;
   width: 100%;
   padding: 0 60px;
-  z-index: ${ZINDEXBASE + 20};
+  z-index: ${ZINDEXBASE + 30};
 `;
 
 const Header = ({ isMenuOpened, onToggleMenu }) => (
