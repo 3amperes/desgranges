@@ -3,12 +3,21 @@ import styled from 'styled-components';
 import { Cell } from 'styled-css-grid';
 import { Container, Paragraph, ContaCta, SurTitle } from 'components/common';
 import { Box, Text, Heading } from 'components/tools';
+import { themeGet } from 'styled-system/dist/util';
 
+const Description = Text.extend`
+  p {
+    margin: 0;
+    margin-bottom: ${themeGet('space.3')}px;
+  }
+`;
 const Section = ({ children, height, title, surtitle }) => (
-  <Container height={height} alignContent="center">
+  <Container height={height} alignContent="center" gap="38px">
     <Cell width={8} left={3} middle>
       <SurTitle label={surtitle} />
-      <Heading textAlign="center">{title}</Heading>
+      <Heading mb={0} textAlign="center">
+        {title}
+      </Heading>
     </Cell>
     <Cell width={6} left={4} middle>
       {children}
@@ -16,52 +25,45 @@ const Section = ({ children, height, title, surtitle }) => (
   </Container>
 );
 
-const AboutPage = () => (
-  <div>
-    <Section
-      height="80vh"
-      title="Il y a encore de la place sur internet."
-      surtitle="Webdesign"
-    >
-      <Paragraph fontWeight="700">
-        Ça veut dire quoi webdesign ? Et pourquoi faire appel à un webdesigner
-      </Paragraph>
-      <Paragraph>
-        Concrètement cela signifie créer le plus beau contenant pour accueillir
-        votre contenu sur internet. <br /> Plus clair ? Non ? <br /> Ok, cliquez
-        sur le bouton « contactez-moi » et je me ferai un plaisir de venir vous
-        présenter mon travail et ma philosophie.{' '}
-      </Paragraph>
-    </Section>
-    <Section
-      title="Il y a encore de la place sur internet."
-      surtitle="Webdesign"
-    >
-      <Paragraph fontWeight="700">
-        Ça veut dire quoi webdesign ? Et pourquoi faire appel à un webdesigner
-      </Paragraph>
-      <Paragraph>
-        Concrètement cela signifie créer le plus beau contenant pour accueillir
-        votre contenu sur internet. <br /> Plus clair ? Non ? <br /> Ok, cliquez
-        sur le bouton « contactez-moi » et je me ferai un plaisir de venir vous
-        présenter mon travail et ma philosophie.{' '}
-      </Paragraph>
-    </Section>
-    <Section
-      title="Il y a encore de la place sur internet."
-      surtitle="Webdesign"
-    >
-      <Paragraph fontWeight="700">
-        Ça veut dire quoi webdesign ? Et pourquoi faire appel à un webdesigner
-      </Paragraph>
-      <Paragraph>
-        Concrètement cela signifie créer le plus beau contenant pour accueillir
-        votre contenu sur internet. <br /> Plus clair ? Non ? <br /> Ok, cliquez
-        sur le bouton « contactez-moi » et je me ferai un plaisir de venir vous
-        présenter mon travail et ma philosophie.{' '}
-      </Paragraph>
-    </Section>
-  </div>
-);
+const SkillsPage = ({ data }) => {
+  const skills = data.allContentfulSkills.edges;
 
-export default AboutPage;
+  return (
+    <div>
+      {skills.map(({ node: skill }, index) => (
+        <Section
+          key={skill.title}
+          surtitle={skill.title}
+          title={skill.baseline}
+          height={index === 0 ? '85vh' : '100vh'}
+        >
+          <Description
+            dangerouslySetInnerHTML={{
+              __html: skill.description.childMarkdownRemark.html,
+            }}
+          />
+        </Section>
+      ))}}
+    </div>
+  );
+};
+
+export default SkillsPage;
+
+export const query = graphql`
+  query SkillsQuery {
+    allContentfulSkills {
+      edges {
+        node {
+          title
+          baseline
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+    }
+  }
+`;
