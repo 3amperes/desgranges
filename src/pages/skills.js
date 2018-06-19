@@ -27,23 +27,42 @@ const Section = ({ children, height, title, surtitle }) => (
 
 const SkillsPage = ({ data }) => {
   const skills = data.allContentfulSkills.edges;
+  const expandedSkills = skills.filter(skill => skill.node.expand);
+  const otherSkills = skills
+    .filter(skill => !skill.node.expand)
+    .map(skill => skill.node.title);
 
   return (
     <div>
-      {skills.map(({ node: skill }, index) => (
+      {expandedSkills.map(({ node }, index) => {
+        const { title, baseline, description, expand } = node;
+        return (
+          <Section
+            key={title}
+            surtitle={title}
+            title={baseline || ''}
+            height={index === 0 ? '85vh' : '100vh'}
+          >
+            {description && (
+              <Description
+                dangerouslySetInnerHTML={{
+                  __html: description.childMarkdownRemark.html,
+                }}
+              />
+            )}
+          </Section>
+        );
+      })}
+      {otherSkills.length > 0 && (
         <Section
-          key={skill.title}
-          surtitle={skill.title}
-          title={skill.baseline}
-          height={index === 0 ? '85vh' : '100vh'}
+          key="otherSkills"
+          surtitle="et aussi"
+          title="D'autres disciplines comme :"
+          height="100vh"
         >
-          <Description
-            dangerouslySetInnerHTML={{
-              __html: skill.description.childMarkdownRemark.html,
-            }}
-          />
+          <Paragraph fontWeight="700">{otherSkills.join(', ')} ...</Paragraph>
         </Section>
-      ))}}
+      )}
     </div>
   );
 };
@@ -52,11 +71,13 @@ export default SkillsPage;
 
 export const query = graphql`
   query SkillsQuery {
-    allContentfulSkills {
+    allContentfulSkills(sort: { fields: [order], order: ASC }) {
       edges {
         node {
           title
           baseline
+          order
+          expand
           description {
             childMarkdownRemark {
               html
