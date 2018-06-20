@@ -10,5 +10,5 @@ export const TRANSITION = {
 
 export const GRID = {
   COLUMNS: 'repeat(12, minmax(30px, 70px))',
-  GAP: '26px',
+  GAP: '38px',
 };
