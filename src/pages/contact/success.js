@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import { Box, Heading } from 'components/tools';
+import { Box, Heading } from 'components';
 
 const ContactSuccessPage = () => (
   <Box textAlign="center">

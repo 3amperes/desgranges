@@ -1,7 +1,6 @@
 import React from 'react';
-import { Cell } from 'styled-css-grid';
-import { Container, Paragraph, ContaCta } from 'components/common';
-import { Box, Heading } from 'components/tools';
+import { Cell } from 'components';
+import { Container, Paragraph, ContaCta, Box, Heading } from 'components';
 
 const AboutPage = () => (
   <div>

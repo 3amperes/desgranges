@@ -1,8 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Cell } from 'styled-css-grid';
-import { Container, Paragraph, ContaCta, SurTitle } from 'components/common';
-import { Box, Text, Heading } from 'components/tools';
+import {
+  Container,
+  Cell,
+  Text,
+  Heading,
+  Paragraph,
+  ContaCta,
+  SurTitle,
+} from 'components';
 import { themeGet } from 'styled-system/dist/util';
 
 const Description = Text.extend`

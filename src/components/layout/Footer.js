@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, Cell, Box, Text, Logotype } from 'components';
+import Logotype from '../Logotype';
+import { Container, Cell, Box, Text } from 'components';
 import { resetLink, transition } from 'utils/mixins';
 import { themeGet } from 'styled-system';
 

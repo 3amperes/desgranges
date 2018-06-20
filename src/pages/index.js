@@ -1,13 +1,15 @@
 import React from 'react';
-import { Cell } from 'styled-css-grid';
-import { Box, Text, Heading } from 'components/tools';
 import {
   Button,
   PageHeader,
   Paragraph,
   Container,
+  Cell,
   ContaCta,
-} from 'components/common';
+  Box,
+  Text,
+  Heading,
+} from 'components';
 
 const IndexPage = () => (
   <div>

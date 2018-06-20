@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Text, Box } from 'components/tools';
+import { Text, Box } from 'components';
 import { resetButton, absolute, transition } from 'utils/mixins';
 
 const ButtonWrapper = styled.button`

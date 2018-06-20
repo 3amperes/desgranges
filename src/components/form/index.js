@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { Box, Text } from 'components/tools';
+import { Box, Text } from 'components';
 
 const inputStyle = css`
   border: none;

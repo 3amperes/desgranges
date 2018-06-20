@@ -1,14 +1,15 @@
 import React from 'react';
 import { navigateTo } from 'gatsby-link';
-import { Cell } from 'styled-css-grid';
 import {
   Field,
   Textearea,
   Container,
+  Cell,
   Paragraph,
   PageHeader,
-} from 'components/common';
-import { Box, Text, Heading } from 'components/tools';
+  Box,
+  Text,
+} from 'components';
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from 'components/tools';
+import { Box } from 'components';
 
 const Logotype = ({
   width = '120px',

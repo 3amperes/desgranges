@@ -1,7 +1,7 @@
 import React from 'react';
 import { navigateTo } from 'gatsby-link';
 import styled from 'styled-components';
-import { Grid, Cell, Box, Button, Logotype } from 'components';
+import { Box, Button, Logotype, Grid, Cell } from 'components';
 import { absolute } from 'utils/mixins';
 import { ZINDEXBASE, SIZES } from 'utils/constants';
 

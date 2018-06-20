@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import GLink from 'gatsby-link';
-import { Grid, Box, Text, Heading } from 'components';
+import { Box, Text, Heading, Grid, Cell } from 'components';
 import { GRID } from 'utils/constants';
 import { resetLink } from 'utils/mixins';
 
@@ -25,6 +25,14 @@ export const Container = ({ children, height = '100vh', ...props }) => (
   >
     {children}
   </Grid>
+);
+
+export const CenterSection = ({ children, height = '100vh', ...props }) => (
+  <Container height={height} {...props}>
+    <Cell width={12} center>
+      {children}
+    </Cell>
+  </Container>
 );
 
 export const Paragraph = ({ children, mb = 3, ...props }) => (
