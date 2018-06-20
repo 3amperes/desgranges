@@ -40,7 +40,7 @@ const Footer = () => (
           <br /> 06 59 24 73 17
         </Text>
       </Cell>
-      <Cell center right>
+      <Cell center>
         <Link isUppercase href="http://www.linkedin.com">
           Linkedin
         </Link>

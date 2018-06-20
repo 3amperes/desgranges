@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import tag from 'clean-tag';
 
-const Cell = styled(tag.div)`
+const Cell = styled(tag.div).attrs({
+  blacklist: ['top', 'left', 'middle', 'center', 'area', 'width', 'height'],
+})`
   height: 100%;
   min-width: 0;
   align-content: space-around;
