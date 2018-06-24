@@ -26,10 +26,8 @@ injectGlobal`
 `;
 
 class AnimatedScreen extends React.Component {
-  wrapper = React.createRef();
-
   animate = () => {
-    const wrapper = this.wrapper.current;
+    const wrapper = this.wrapper;
 
     this.animation = new TimelineLite();
     this.animation
@@ -43,7 +41,7 @@ class AnimatedScreen extends React.Component {
   render() {
     return (
       <Box
-        innerRef={this.wrapper}
+        innerRef={el => (this.wrapper = el)}
         bg={'sea'}
         style={{
           position: 'absolute',
