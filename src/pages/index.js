@@ -1,35 +1,71 @@
 import React from 'react';
+import styled from 'styled-components';
 import {
   Button,
   Paragraph,
   Container,
   Cell,
   ContaCta,
-  Box,
-  Text,
   Heading,
+  Cocktail,
+  Lunettes,
+  VegetationLeft,
+  VegetationRight,
 } from 'components';
+
+const ContentWrapper = styled.div`
+  position: relative;
+  overflow: hidden;
+
+  div:first-child {
+    z-index: 10;
+  }
+`;
+
+const VegetationLeftWrapper = styled.div`
+  position: absolute;
+  left: -100px;
+  top: 0;
+  z-index: 0;
+  height: 100%;
+`;
+
+const VegetationRightWrapper = styled.div`
+  position: absolute;
+  right: -100px;
+  top: 0;
+  z-index: 0;
+  height: 100%;
+`;
 
 const IndexPage = () => (
   <div>
-    <Container height="85vh" rows={'auto auto 40%'} alignContent="end">
-      <Cell width={12} center middle>
-        <Heading isBig mb={0}>
-          Création web & print
-        </Heading>
-      </Cell>
-      <Cell width={4} left={5} center middle>
-        <Paragraph mb={0}>
-          Je suis Romain Desgranges, designer graphique spécialisé dans la
-          création d’interfaces web et de supports print.
-        </Paragraph>
-      </Cell>
-      <Cell width={12} center middle>
-        <div>
-          <Button label="Découvrir" />
-        </div>
-      </Cell>
-    </Container>
+    <ContentWrapper>
+      <Container height="85vh" rows={'auto auto 40%'} alignContent="end">
+        <Cell width={12} center middle>
+          <Heading fontSize={9} mb={0}>
+            Création web & print
+          </Heading>
+        </Cell>
+        <Cell width={4} left={5} center middle>
+          <Paragraph mb={0}>
+            Je suis Romain Desgranges, designer graphique spécialisé dans la
+            création d’interfaces web et de supports print.
+          </Paragraph>
+        </Cell>
+        <Cell width={12} center middle>
+          <div>
+            <Button label="Découvrir" />
+          </div>
+        </Cell>
+      </Container>
+      <VegetationLeftWrapper>
+        <VegetationLeft height="100%" />
+      </VegetationLeftWrapper>
+      <VegetationRightWrapper>
+        <VegetationRight height="100%" />
+      </VegetationRightWrapper>
+    </ContentWrapper>
     <Container>
       <Cell width={3} left={3}>
         <Heading is="h2">
@@ -49,8 +85,14 @@ const IndexPage = () => (
         </Paragraph>
         <Button label="je suis à votre disposition" />
       </Cell>
+      <Cell width={3} left={8} middle>
+        <Lunettes />
+      </Cell>
     </Container>
     <Container>
+      <Cell width={3} left={3} middle>
+        <Cocktail />
+      </Cell>
       <Cell width={3} left={8}>
         <Heading is="h2">Le cocktail idéal</Heading>
         <Paragraph is="strong" fontWeight="700">
@@ -61,6 +103,7 @@ const IndexPage = () => (
           J’ai les ingrédients qui me permettent de vous proposer le cocktail
           idéal pour vos créations graphiques.
         </Paragraph>
+
         <Button label="découvrir mes compétences" />
       </Cell>
     </Container>
