@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, CenterSection, Heading, Paragraph } from 'components';
+import { navigateTo } from 'gatsby-link';
 
 const ContaCta = () => (
   <CenterSection height="400px">

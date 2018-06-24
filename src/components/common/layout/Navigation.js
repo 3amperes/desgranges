@@ -106,7 +106,7 @@ class Navigation extends Component {
         onEnter={this.onEnter}
         onExit={this.onExit}
       >
-        {state => (
+        {() => (
           <div ref={el => (this.wrapper = el)} style={{ opacity: 1 }}>
             <NavWrapper color="black" bg="salmon">
               <Container
