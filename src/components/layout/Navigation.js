@@ -83,7 +83,6 @@ class Navigation extends Component {
         opacity: 0,
         skewX: '-20deg',
         ease: Elastic.easeOut.config(0.25, 1),
-        onComplete: () => console.log('done'),
       },
       0.15
     );

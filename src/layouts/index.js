@@ -69,9 +69,11 @@ class ViewWrapper extends React.Component {
     const { state, children } = this.props;
     return (
       <Box
+        bg="gray.light"
         pt={120}
         style={{
           position: 'absolute', // absolute is required because 2 screens can be on top of each other during the transition
+          width: '100%',
           opacity: state === 'entering' ? 0 : 1,
         }}
       >
@@ -99,7 +101,7 @@ class Layout extends React.Component {
       <ThemeProvider theme={theme}>
         <Toggle initial={false}>
           {({ on, toggle, set }) => (
-            <MainWrapper overflowHidden={on} p={0} bg="gray.light">
+            <MainWrapper overflowHidden={on} p={0}>
               <AnimatedScreen ref={this.animatedScreen} />
               <TransitionGroup>
                 <Transition
