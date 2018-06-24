@@ -103,7 +103,7 @@ class Layout extends React.Component {
           {({ on, toggle, set }) => (
             <MainWrapper overflowHidden={on} p={0}>
               <AnimatedScreen ref={this.animatedScreen} />
-              <TransitionGroup>
+              <TransitionGroup component={null}>
                 <Transition
                   key={location.pathname}
                   timeout={600}
