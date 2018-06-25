@@ -28,37 +28,26 @@ const MainWrapper = Box.extend`
   overflow-y: ${props => (props.overflowHidden ? 'hidden' : 'visible')};
 `;
 
-class Layout extends React.Component {
-  animatedScreen = React.createRef();
-
-  onEntering = () => {
-    this.animatedScreen.current.animate();
-  };
-
-  render() {
-    const { children } = this.props;
-    return (
-      <ThemeProvider theme={theme}>
-        <Toggle initial={false}>
-          {({ on, toggle, set }) => (
-            <MainWrapper overflowHidden={on} p={0} bg="gray.light" pt={120}>
-              <Header onToggleMenu={toggle} isMenuOpened={on} />
-              <AnimatedScreen
-                render={props => (
-                  <Box pb={6} {...props}>
-                    {children()}
-                  </Box>
-                )}
-              />
-              <Footer />
-              <Navigation isOpened={on} onClose={() => set(false)} />
-            </MainWrapper>
-          )}
-        </Toggle>
-      </ThemeProvider>
-    );
-  }
-}
+const Layout = ({ children, data }) => (
+  <ThemeProvider theme={theme}>
+    <Toggle initial={false}>
+      {({ on, toggle, set }) => (
+        <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
+          <Header onToggleMenu={toggle} isMenuOpened={on} />
+          <AnimatedScreen
+            render={props => (
+              <Box pb={6} {...props}>
+                {children()}
+              </Box>
+            )}
+          />
+          <Footer />
+          <Navigation isOpened={on} onClose={() => set(false)} />
+        </MainWrapper>
+      )}
+    </Toggle>
+  </ThemeProvider>
+);
 
 Layout.propTypes = {
   children: PropTypes.func,
