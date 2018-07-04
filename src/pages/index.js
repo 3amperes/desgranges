@@ -24,7 +24,7 @@ const ContentWrapper = styled.div`
 
 const VegetationLeftWrapper = styled.div`
   position: absolute;
-  left: -100px;
+  left: -40px;
   top: 0;
   z-index: 0;
   height: 100%;
@@ -32,7 +32,7 @@ const VegetationLeftWrapper = styled.div`
 
 const VegetationRightWrapper = styled.div`
   position: absolute;
-  right: -100px;
+  right: -40px;
   top: 0;
   z-index: 0;
   height: 100%;
