@@ -1,7 +1,7 @@
 import system from 'system-components';
 
 export const Box = system(
-  { blacklist: ['overflowHidden'] },
+  { blacklist: ['overflowHidden', 'isOver'] },
   'space',
   'width',
   'color',
@@ -15,10 +15,14 @@ export const Text = system(
     lineHeight: 1,
     letterSpacing: 0,
     fontWeight: '400',
-    blacklist: ['isUppercase', 'lineHeight'],
+    blacklist: ['isUppercase', 'isLowercase', 'lineHeight'],
   },
   props => ({
-    textTransform: props.isUppercase ? 'uppercase' : 'none',
+    textTransform: props.isUppercase
+      ? 'uppercase'
+      : props.isLowercase
+        ? 'lowercase'
+        : 'none',
   }),
   'space',
   'display',

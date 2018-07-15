@@ -1,11 +1,12 @@
 import React from 'react';
-import { Cell } from 'components';
+import Img from 'gatsby-image';
 import {
   CenterSection,
   Container,
   SurTitle,
   Paragraph,
   ContaCta,
+  Cell,
   Box,
   Heading,
 } from 'components';
@@ -17,13 +18,26 @@ const SubTitle = ({ children }) => (
 );
 
 const ProjectTemplate = ({ data }) => {
-  const { title, tag, object, answer, main, footer } = data.contentfulProject;
+  const {
+    title,
+    tag,
+    thumbnail,
+    object,
+    answer,
+    main,
+    footer,
+  } = data.contentfulProject;
   return (
     <div>
       <CenterSection height="150px">
         {!!tag && <SurTitle label={tag.title} />}
         <Heading>{title}</Heading>
       </CenterSection>
+      <Container>
+        <Cell width={8} left={3}>
+          <Img sizes={thumbnail.sizes} />
+        </Cell>
+      </Container>
       <Container height="400px">
         <Cell width={3} left={4}>
           <SubTitle>Objectif</SubTitle>
@@ -74,6 +88,11 @@ export const query = graphql`
       title
       tag {
         title
+      }
+      thumbnail {
+        sizes(maxWidth: 850) {
+          ...GatsbyContentfulSizes
+        }
       }
       object
       answer

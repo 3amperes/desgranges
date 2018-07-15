@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 import {
   Button,
   Paragraph,
@@ -11,6 +12,7 @@ import {
   Lunettes,
   VegetationLeft,
   VegetationRight,
+  ProjectList,
 } from 'components';
 
 const ContentWrapper = styled.div`
@@ -38,19 +40,9 @@ const VegetationRightWrapper = styled.div`
   height: 100%;
 `;
 
-const ProjectItem = ({ index, project }) => (
-  <React.Fragment>
-    <Cell width={4} left={index % 2 ? 0 : 3} height={2}>
-      <a href={`/projets/${project.slug}`}>{project.title}</a>
-    </Cell>
-    {index === 0 && <Cell width={4} />}
-  </React.Fragment>
-);
-
 const IndexPage = ({ data }) => {
-  const projects = data.allContentfulProject.edges.filter(
-    ({ node }) => node.highlight
-  );
+  const projects =
+    data && data.allContentfulProject && data.allContentfulProject.edges;
   return (
     <div>
       <ContentWrapper>
@@ -120,11 +112,7 @@ const IndexPage = ({ data }) => {
           <Button label="découvrir mes compétences" />
         </Cell>
       </Container>
-      <Container rows="repeat(3, 80px auto)">
-        {projects.map(({ node }, i) => (
-          <ProjectItem project={node} index={i} key={node.id} />
-        ))}
-      </Container>
+      {!!projects && <ProjectList projects={projects} />}
       <ContaCta />
     </div>
   );
@@ -133,15 +121,27 @@ const IndexPage = ({ data }) => {
 export default IndexPage;
 
 export const query = graphql`
-  query projectsQuery {
-    allContentfulProject(sort: { fields: [order], order: ASC }) {
+  query homeProjectsQuery {
+    allContentfulProject(
+      filter: { highlight: { ne: false } }
+      sort: { fields: [order], order: ASC }
+    ) {
       edges {
         node {
           id
           order
           slug
           title
+          tag {
+            title
+          }
           highlight
+          thumbnail {
+            resolutions(width: 390, height: 390) {
+              # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
+              ...GatsbyContentfulResolutions
+            }
+          }
         }
       }
     }
