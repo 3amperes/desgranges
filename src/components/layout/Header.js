@@ -1,7 +1,7 @@
 import React from 'react';
-import { navigateTo } from 'gatsby-link';
+import Link from 'gatsby-link';
 import styled from 'styled-components';
-import { Box, Button, Logotype, Grid, Cell } from 'components';
+import { Box, Button, ButtonLink, Logotype, Grid, Cell } from 'components';
 import { absolute } from 'utils/mixins';
 import { ZINDEXBASE, SIZES } from 'utils/constants';
 
@@ -11,6 +11,10 @@ const HeaderInner = styled.header`
   width: 100%;
   padding: 0 60px;
   z-index: ${ZINDEXBASE + 30};
+`;
+
+const LogoLink = styled(Link)`
+  margin: auto;
 `;
 
 const Header = ({ isMenuOpened, onToggleMenu }) => (
@@ -30,11 +34,13 @@ const Header = ({ isMenuOpened, onToggleMenu }) => (
         </Box>
       </Cell>
       <Cell middle>
-        <Logotype m="auto" color="gray.dark" />
+        <LogoLink to="/">
+          <Logotype color="gray.dark" />
+        </LogoLink>
       </Cell>
       <Cell middle>
         <Box textAlign="right">
-          <Button label="contact" onClick={() => navigateTo('/contact')} />
+          <ButtonLink label="contact" to="/contact" />
         </Box>
       </Cell>
     </Grid>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, CenterSection, Heading, Paragraph } from 'components';
-import { navigateTo } from 'gatsby-link';
+import { ButtonLink, CenterSection, Heading, Paragraph } from 'components';
 
 const ContaCta = () => (
   <CenterSection height="400px">
@@ -9,7 +8,7 @@ const ContaCta = () => (
       Une interrogation sur un projet, une question ou tout simplement des
       disponibilités ?
     </Paragraph>
-    <Button label="Contactez moi" onClick={() => navigateTo('/contact')} />
+    <ButtonLink label="Contactez moi" to={'/contact'} />
   </CenterSection>
 );
 

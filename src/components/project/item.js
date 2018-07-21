@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'gatsby-link';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { Cell, Box, Text } from 'components';
@@ -29,7 +30,7 @@ const Description = ({ title, tag, isOver }) => (
   </DescriptionWrapper>
 );
 
-const ProjectLink = styled.a`
+const ProjectLink = styled(Link)`
   position: relative;
   display: block;
   z-index: 10;
@@ -59,7 +60,7 @@ class ProjectItem extends Component {
       <React.Fragment>
         <Cell width={4} left={index % 2 ? 0 : 3} height={2}>
           <ProjectLink
-            href={`/projets/${project.slug}`}
+            to={`/projets/${project.slug}`}
             onMouseEnter={this.onMouseEnter}
             onMouseLeave={this.onMouseLeave}
           >

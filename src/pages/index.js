@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import {
-  Button,
+  ButtonLink,
   Paragraph,
   Container,
   Cell,
@@ -60,7 +59,7 @@ const IndexPage = ({ data }) => {
           </Cell>
           <Cell width={12} center middle>
             <div>
-              <Button label="Découvrir" />
+              <ButtonLink label="Découvrir" to="/about" />
             </div>
           </Cell>
         </Container>
@@ -88,7 +87,7 @@ const IndexPage = ({ data }) => {
             visibilité sur vos projets en vous appuyant sur un freelance
             disponible rapidement ?
           </Paragraph>
-          <Button label="je suis à votre disposition" />
+          <ButtonLink label="je suis à votre disposition" to="/contact" />
         </Cell>
         <Cell width={3} left={8} middle>
           <Lunettes />
@@ -109,7 +108,7 @@ const IndexPage = ({ data }) => {
             idéal pour vos créations graphiques.
           </Paragraph>
 
-          <Button label="découvrir mes compétences" />
+          <ButtonLink label="découvrir mes compétences" to="/skills" />
         </Cell>
       </Container>
       {!!projects && <ProjectList projects={projects} />}

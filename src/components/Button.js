@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'gatsby-link';
 import styled from 'styled-components';
 import { Text, Box } from 'components';
 import { resetButton, absolute, transition } from 'utils/mixins';
@@ -7,6 +8,7 @@ const ButtonWrapper = styled.button`
   ${resetButton};
   cursor: pointer;
   position: relative;
+  display: inline-block;
   height: 25px;
   padding: 0 0 9px 0;
   overflow: hidden;
@@ -22,6 +24,8 @@ const ButtonWrapper = styled.button`
   }
 `;
 
+const LinkWrapper = ButtonWrapper.withComponent(Link);
+
 const ButtonBorder = Box.extend`
   width: 100%;
   height: 100%;
@@ -31,41 +35,48 @@ const ButtonBorder = Box.extend`
   ${transition({ property: 'transform' })};
 `;
 
-class Button extends Component {
-  state = {
-    isHover: false,
-  };
-  onMouseEvent = () => {
-    this.setState({
-      isHover: !this.state.isHover,
-    });
-  };
-  render() {
-    const { label, ...buttonProps } = this.props;
-    const { isHover } = this.state;
-    return (
-      <ButtonWrapper
-        onMouseOver={this.onMouseEvent}
-        onMouseOut={this.onMouseEvent}
-        isHover={isHover}
-        {...buttonProps}
-      >
-        <Text
-          isUppercase
-          is="span"
-          display="inline-block"
-          fontSize={1}
-          fontWeight="600"
-          lineHeight="16px"
-          letterSpacing="2px"
-          color="black"
+function buttonHoc(name, Wrapper) {
+  class ButtonComponent extends Component {
+    state = {
+      isHover: false,
+    };
+    onMouseEvent = () => {
+      this.setState({
+        isHover: !this.state.isHover,
+      });
+    };
+    render() {
+      const { label, ...buttonProps } = this.props;
+      const { isHover } = this.state;
+      return (
+        <Wrapper
+          onMouseOver={this.onMouseEvent}
+          onMouseOut={this.onMouseEvent}
+          {...buttonProps}
         >
-          {label}
-        </Text>
-        <ButtonBorder bg="peach" offset={isHover ? 11 : 20} />
-      </ButtonWrapper>
-    );
+          <Text
+            isUppercase
+            is="span"
+            display="inline-block"
+            fontSize={1}
+            fontWeight="600"
+            lineHeight="16px"
+            letterSpacing="2px"
+            color="black"
+          >
+            {label}
+          </Text>
+          <ButtonBorder bg="peach" offset={isHover ? 11 : 20} />
+        </Wrapper>
+      );
+    }
   }
+  ButtonComponent.displayName = name;
+
+  return ButtonComponent;
 }
+
+export const Button = buttonHoc('Button', ButtonWrapper);
+export const ButtonLink = buttonHoc('ButtonLink', LinkWrapper);
 
 export default Button;
