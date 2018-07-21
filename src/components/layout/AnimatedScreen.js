@@ -6,7 +6,7 @@ import { TransitionGroup, Transition } from 'react-transition-group';
 import withRouter from 'react-router/withRouter';
 
 const animationDuration = 600;
-const tweenDuration = animationDuration / 3000 * 2;
+const tweenDuration = (animationDuration / 3000) * 2;
 
 const AnimationComponentWrapper = Box.extend`
   ${absolute({ top: 0, bottom: 0, left: 0, right: 0 })};
