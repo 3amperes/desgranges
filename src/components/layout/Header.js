@@ -1,7 +1,7 @@
 import React from 'react';
-import Link from 'gatsby-link';
 import styled from 'styled-components';
 import { Box, Button, ButtonLink, Logotype, Grid, Cell } from 'components';
+import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import { absolute } from 'utils/mixins';
 import { ZINDEXBASE, SIZES } from 'utils/constants';
 
@@ -13,7 +13,7 @@ const HeaderInner = styled.header`
   z-index: ${ZINDEXBASE + 30};
 `;
 
-const LogoLink = styled(Link)`
+const LogoLink = styled(AnimatedLink)`
   margin: auto;
 `;
 

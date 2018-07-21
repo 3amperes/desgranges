@@ -1,11 +1,11 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import { Box, Heading } from 'components';
 
 const ContactSuccessPage = () => (
   <Box textAlign="center">
     <Heading>Votre message va m'être transmis hyper vite.</Heading>
-    <Link to="/">Retour à l'accueil</Link>
+    <AnimatedLink to="/">Retour à l'accueil</AnimatedLink>
   </Box>
 );
 

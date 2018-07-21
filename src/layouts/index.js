@@ -32,18 +32,14 @@ const Layout = ({ children, data }) => (
   <ThemeProvider theme={theme}>
     <Toggle initial={false}>
       {({ on, toggle, set }) => (
-        <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
-          <Header onToggleMenu={toggle} isMenuOpened={on} />
-          <AnimatedScreen
-            render={props => (
-              <Box pb={6} {...props}>
-                {children()}
-              </Box>
-            )}
-          />
-          <Footer />
-          <Navigation isOpened={on} onClose={() => set(false)} />
-        </MainWrapper>
+        <AnimatedScreen>
+          <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
+            <Header onToggleMenu={toggle} isMenuOpened={on} />
+            <Box pb={6}>{children()}</Box>
+            <Footer />
+            <Navigation isOpened={on} onClose={() => set(false)} />
+          </MainWrapper>
+        </AnimatedScreen>
       )}
     </Toggle>
   </ThemeProvider>

@@ -1,23 +1,62 @@
 import React from 'react';
+import GLink, { navigateTo } from 'gatsby-link';
 import { TimelineLite } from 'gsap';
 import { Box } from 'components';
 import { absolute } from 'utils/mixins';
-import { TransitionGroup, Transition } from 'react-transition-group';
 import withRouter from 'react-router/withRouter';
 
+export const AnimatedScreenContext = React.createContext();
 const animationDuration = 600;
 const tweenDuration = (animationDuration / 3000) * 2;
 
+export const AnimatedLink = props => (
+  <AnimatedScreenContext.Consumer>
+    {navigateTo => (
+      <GLink
+        {...props}
+        onClick={e => {
+          if (
+            e.button === 0 && // ignore right clicks
+            !props.target && // let browser handle "target=_blank"
+            !e.defaultPrevented && // onClick prevented default
+            !e.metaKey && // ignore clicks with modifier keys...
+            !e.altKey &&
+            !e.ctrlKey &&
+            !e.shiftKey
+          ) {
+            e.preventDefault();
+            navigateTo(props.to, e);
+          }
+        }}
+      />
+    )}
+  </AnimatedScreenContext.Consumer>
+);
+
 const AnimationComponentWrapper = Box.extend`
   ${absolute({ top: 0, bottom: 0, left: 0, right: 0 })};
+  position: fixed;
   z-index: 999;
   transform: translateX(-100%);
 `;
 
-class AnimationComponent extends React.Component {
+class _AnimatedScreen extends React.Component {
   wrapper = React.createRef();
+  currentTimeout;
 
-  animate = () => {
+  componentWillUnmount() {
+    if (this.currentTimeout) {
+      clearTimeout(this.currentTimeout);
+    }
+  }
+
+  navigateTo = to => {
+    // TODO prefetch but how ?
+
+    if (this.currentTimeout) {
+      clearTimeout(this.currentTimeout);
+    }
+
     const wrapper = this.wrapper.current;
 
     this.animation = new TimelineLite();
@@ -27,61 +66,20 @@ class AnimationComponent extends React.Component {
       .to(wrapper, tweenDuration, { x: '-100%' }, `+=${tweenDuration}`)
       .set(wrapper, { x: '-100%' });
     this.animation.play();
+
+    this.currentTimeout = setTimeout(() => {
+      window.scrollTo(0, 0);
+      navigateTo(to);
+    }, tweenDuration * 1000);
   };
 
   render() {
-    return <AnimationComponentWrapper innerRef={this.wrapper} bg={'sea'} />;
-  }
-}
-
-class ScreenWrapper extends React.Component {
-  shouldComponentUpdate() {
-    // Do not update previous screen in order to keep the content visible while transitionning to new screen
-    return this.props.location.pathname === window.location.pathname;
-  }
-
-  render() {
-    const { state, render } = this.props;
-    return render(
-      state === 'entering'
-        ? {
-            style: {
-              display: 'none',
-            },
-          }
-        : {}
-    );
-  }
-}
-
-class _AnimatedScreen extends React.Component {
-  animationComponent = React.createRef();
-
-  onEntering = () => {
-    this.animationComponent.current.animate();
-  };
-
-  render() {
-    const { render, location } = this.props;
+    const { children } = this.props;
     return (
-      <React.Fragment>
-        <AnimationComponent ref={this.animationComponent} />
-        <TransitionGroup component={null}>
-          <Transition
-            key={location.pathname}
-            timeout={animationDuration}
-            onEntering={this.onEntering}
-          >
-            {state => (
-              <ScreenWrapper
-                state={state}
-                location={location}
-                render={render}
-              />
-            )}
-          </Transition>
-        </TransitionGroup>
-      </React.Fragment>
+      <AnimatedScreenContext.Provider value={this.navigateTo}>
+        <AnimationComponentWrapper innerRef={this.wrapper} bg={'sea'} />
+        {children}
+      </AnimatedScreenContext.Provider>
     );
   }
 }

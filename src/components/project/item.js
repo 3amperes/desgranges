@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'gatsby-link';
+import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { Cell, Box, Text } from 'components';
@@ -30,7 +30,7 @@ const Description = ({ title, tag, isOver }) => (
   </DescriptionWrapper>
 );
 
-const ProjectLink = styled(Link)`
+const ProjectLink = styled(AnimatedLink)`
   position: relative;
   display: block;
   z-index: 10;

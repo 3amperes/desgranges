@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Link from 'gatsby-link';
+import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import styled from 'styled-components';
 import { Text, Box } from 'components';
 import { resetButton, absolute, transition } from 'utils/mixins';
@@ -24,7 +24,7 @@ const ButtonWrapper = styled.button`
   }
 `;
 
-const LinkWrapper = ButtonWrapper.withComponent(Link);
+const LinkWrapper = ButtonWrapper.withComponent(AnimatedLink);
 
 const ButtonBorder = Box.extend`
   width: 100%;
