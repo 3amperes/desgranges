@@ -73,10 +73,14 @@ const NavItem = ({ label, innerRef, ...linkProps }) => {
   );
 };
 class Navigation extends Component {
-  animationInit = () => {
-    this.animation = new TimelineLite();
-    this.animation.from(this.wrapper, 0.25, { opacity: 0 });
-    this.animation.staggerFrom(
+  scrollWidth = 0;
+
+  onEnter = () => {
+    this.scrollWidth = this.props.scrollWidth;
+
+    const animation = new TimelineLite();
+    animation.from(this.wrapper, 0.25, { opacity: 0 });
+    animation.staggerFrom(
       navItems.map(item => this[item.ref]),
       0.15,
       {
@@ -87,14 +91,32 @@ class Navigation extends Component {
       },
       0.15
     );
+    animation.play();
   };
-  onEnter = () => {
-    this.animationInit();
-    this.animation.play();
-  };
+
   onExit = () => {
-    this.animation.reverse();
+    const animation = new TimelineLite();
+    if (this.scrollWidth) {
+      animation.set(navItems.map(item => this[item.ref]), {
+        x: -(this.scrollWidth / 2),
+      });
+      this.scrollWidth = 0;
+    }
+    animation.staggerTo(
+      navItems.map(item => this[item.ref]),
+      0.15,
+      {
+        x: 300,
+        opacity: 0,
+        skewX: '-20deg',
+        ease: Elastic.easeOut.config(0.25, 1),
+      },
+      0.15
+    );
+    animation.to(this.wrapper, 0.25, { opacity: 0 });
+    animation.play();
   };
+
   render() {
     const { isOpened, onClose, scrollWidth } = this.props;
     return (
