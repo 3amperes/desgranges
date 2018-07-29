@@ -14,6 +14,7 @@ const NavWrapper = styled.nav`
   top: 0;
   left: 0;
   ${color}
+  padding-right: ${props => props.scrollWidth}px;
 
   z-index: ${ZINDEXBASE + 20};
 
@@ -95,7 +96,7 @@ class Navigation extends Component {
     this.animation.reverse();
   };
   render() {
-    const { isOpened, onClose } = this.props;
+    const { isOpened, onClose, scrollWidth } = this.props;
     return (
       <Transition
         in={isOpened}
@@ -107,7 +108,7 @@ class Navigation extends Component {
       >
         {state => (
           <div ref={el => (this.wrapper = el)} style={{ opacity: 1 }}>
-            <NavWrapper color="black" bg="salmon">
+            <NavWrapper color="black" bg="salmon" scrollWidth={scrollWidth}>
               <Container
                 height="100%"
                 flow="column"

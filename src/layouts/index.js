@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { injectGlobal, ThemeProvider } from 'styled-components';
-import { Toggle } from 'react-powerplug';
 import theme from 'utils/theme';
 import { Header, Footer, Navigation } from 'components';
 import { AnimatedScreen } from 'components/layout/AnimatedScreen';
@@ -28,22 +27,56 @@ const MainWrapper = Box.extend`
   overflow-y: ${props => (props.overflowHidden ? 'hidden' : 'visible')};
 `;
 
-const Layout = ({ children, data }) => (
-  <ThemeProvider theme={theme}>
-    <Toggle initial={false}>
-      {({ on, toggle, set }) => (
+const ContentWrapper = Box.extend`
+  padding-right: ${props => props.scrollWidth}px;
+`;
+
+class Layout extends React.Component {
+  state = {
+    navOn: false,
+    scrollWidth: 0,
+  };
+
+  onToggleNav = () => {
+    this.setState(state => ({
+      navOn: !state.navOn,
+      scrollWidth: state.navOn
+        ? 0
+        : window.innerWidth - document.documentElement.clientWidth,
+    }));
+  };
+
+  onCloseNav = () => {
+    this.setState({ navOn: false, scrollWidth: 0 });
+  };
+
+  render() {
+    const { children, data } = this.props;
+    const { navOn, scrollWidth } = this.state;
+    return (
+      <ThemeProvider theme={theme}>
         <AnimatedScreen>
-          <MainWrapper overflowHidden={on} p={0} pt="120px" bg="gray.light">
-            <Header onToggleMenu={toggle} isMenuOpened={on} />
-            <Box pb={6}>{children()}</Box>
+          <MainWrapper overflowHidden={navOn} p={0} pt="120px" bg="gray.light">
+            <Header
+              onToggleMenu={this.onToggleNav}
+              isMenuOpened={navOn}
+              scrollWidth={scrollWidth}
+            />
+            <ContentWrapper pb={6} scrollWidth={scrollWidth}>
+              {children()}
+            </ContentWrapper>
             <Footer />
-            <Navigation isOpened={on} onClose={() => set(false)} />
+            <Navigation
+              isOpened={navOn}
+              onClose={this.onCloseNav}
+              scrollWidth={scrollWidth}
+            />
           </MainWrapper>
         </AnimatedScreen>
-      )}
-    </Toggle>
-  </ThemeProvider>
-);
+      </ThemeProvider>
+    );
+  }
+}
 
 Layout.propTypes = {
   children: PropTypes.func,

@@ -10,6 +10,7 @@ const HeaderInner = styled.header`
   height: ${SIZES.NAVBAR}px;
   width: 100%;
   padding: 0 60px;
+  padding-right: ${props => props.scrollWidth + 60}px;
   z-index: ${ZINDEXBASE + 30};
 `;
 
@@ -17,8 +18,8 @@ const LogoLink = styled(AnimatedLink)`
   margin: auto;
 `;
 
-const Header = ({ isMenuOpened, onToggleMenu }) => (
-  <HeaderInner>
+const Header = ({ isMenuOpened, onToggleMenu, scrollWidth }) => (
+  <HeaderInner scrollWidth={scrollWidth}>
     <Grid
       rows={`${SIZES.NAVBAR}px`}
       height="100%"
