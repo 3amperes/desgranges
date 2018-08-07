@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import GLink from 'gatsby-link';
+import Responsive from 'react-responsive';
 import { Box, Text, Heading, Grid, Cell } from 'components';
 import { GRID } from 'utils/constants';
 import { resetLink } from 'utils/mixins';
@@ -57,3 +58,10 @@ export const SurTitle = ({ label }) => (
 export const Link = styled(GLink)`
   ${resetLink};
 `;
+
+export const Desktop = props => <Responsive {...props} minWidth={992} />;
+export const Tablet = props => (
+  <Responsive {...props} minWidth={768} maxWidth={991} />
+);
+export const Mobile = props => <Responsive {...props} maxWidth={767} />;
+export const Default = props => <Responsive {...props} minWidth={768} />;
