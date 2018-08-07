@@ -6,6 +6,13 @@ import { Box, Text, Heading, Grid, Cell } from 'components';
 import { GRID } from 'utils/constants';
 import { resetLink } from 'utils/mixins';
 
+export const Desktop = props => <Responsive {...props} minWidth={992} />;
+export const Tablet = props => (
+  <Responsive {...props} minWidth={768} maxWidth={991} />
+);
+export const Mobile = props => <Responsive {...props} maxWidth={767} />;
+export const Default = props => <Responsive {...props} minWidth={768} />;
+
 export const PageHeader = ({ children, title, isBig }) => (
   <header>
     <Box textAlign="center">
@@ -16,16 +23,44 @@ export const PageHeader = ({ children, title, isBig }) => (
 );
 
 export const Container = ({ children, height = '100vh', ...props }) => (
-  <Grid
-    columns={GRID.COLUMNS}
-    gap={GRID.GAP}
-    justifyContent="center"
-    alignContent="center"
-    height={height}
-    {...props}
-  >
-    {children}
-  </Grid>
+  <React.Fragment>
+    <Mobile>
+      <Grid
+        columns={GRID.MOBILE.COLUMNS}
+        gap={GRID.MOBILE.GAP}
+        justifyContent="center"
+        alignContent="center"
+        height={height}
+        {...props}
+      >
+        {children}
+      </Grid>
+    </Mobile>
+    <Tablet>
+      <Grid
+        columns={GRID.TABLET.COLUMNS}
+        gap={GRID.TABLET.GAP}
+        justifyContent="center"
+        alignContent="center"
+        height={height}
+        {...props}
+      >
+        {children}
+      </Grid>
+    </Tablet>
+    <Desktop>
+      <Grid
+        columns={GRID.DESKTOP.COLUMNS}
+        gap={GRID.DESKTOP.GAP}
+        justifyContent="center"
+        alignContent="center"
+        height={height}
+        {...props}
+      >
+        {children}
+      </Grid>
+    </Desktop>
+  </React.Fragment>
 );
 
 export const CenterSection = ({ children, height = '100vh', ...props }) => (
@@ -58,10 +93,3 @@ export const SurTitle = ({ label }) => (
 export const Link = styled(GLink)`
   ${resetLink};
 `;
-
-export const Desktop = props => <Responsive {...props} minWidth={992} />;
-export const Tablet = props => (
-  <Responsive {...props} minWidth={768} maxWidth={991} />
-);
-export const Mobile = props => <Responsive {...props} maxWidth={767} />;
-export const Default = props => <Responsive {...props} minWidth={768} />;

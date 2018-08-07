@@ -12,6 +12,8 @@ import {
   VegetationLeft,
   VegetationRight,
   ProjectList,
+  Desktop,
+  Mobile,
 } from 'components';
 
 const ContentWrapper = styled.div`
@@ -39,11 +41,9 @@ const VegetationRightWrapper = styled.div`
   height: 100%;
 `;
 
-const IndexPage = ({ data }) => {
-  const projects =
-    data && data.allContentfulProject && data.allContentfulProject.edges;
-  return (
-    <div>
+const Intro = () => (
+  <div>
+    <Desktop>
       <ContentWrapper>
         <Container height="85vh" rows={'auto auto 40%'} alignContent="end">
           <Cell width={12} center middle>
@@ -70,6 +70,44 @@ const IndexPage = ({ data }) => {
           <VegetationRight height="100%" />
         </VegetationRightWrapper>
       </ContentWrapper>
+    </Desktop>
+    <Mobile>
+      <ContentWrapper>
+        <Container height="85vh" rows={'80% auto auto'} alignContent="end">
+          <Cell width={6} center middle>
+            <Heading fontSize={9} mb={0}>
+              Création web & print
+            </Heading>
+          </Cell>
+          <Cell width={6} center middle>
+            <Paragraph mb={0}>
+              Je suis Romain Desgranges, designer graphique spécialisé dans la
+              création d’interfaces web et de supports print.
+            </Paragraph>
+          </Cell>
+          <Cell width={6} center middle>
+            <div>
+              <ButtonLink label="Découvrir" to="/about" />
+            </div>
+          </Cell>
+        </Container>
+        <VegetationLeftWrapper>
+          <VegetationLeft height="50%" />
+        </VegetationLeftWrapper>
+        <VegetationRightWrapper>
+          <VegetationRight height="50%" />
+        </VegetationRightWrapper>
+      </ContentWrapper>
+    </Mobile>
+  </div>
+);
+
+const IndexPage = ({ data }) => {
+  const projects =
+    data && data.allContentfulProject && data.allContentfulProject.edges;
+  return (
+    <div>
+      <Intro />
       <Container>
         <Cell width={3} left={3}>
           <Heading is="h2">

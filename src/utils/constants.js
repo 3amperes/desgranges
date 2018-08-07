@@ -9,6 +9,16 @@ export const TRANSITION = {
 };
 
 export const GRID = {
-  COLUMNS: 'repeat(12, minmax(30px, 70px))',
-  GAP: '38px',
+  MOBILE: {
+    COLUMNS: 'repeat(6, 38px)',
+    GAP: '15px',
+  },
+  TABLET: {
+    COLUMNS: 'repeat(4, 50px)',
+    GAP: '15px',
+  },
+  DESKTOP: {
+    COLUMNS: 'repeat(12, minmax(30px, 70px))',
+    GAP: '38px',
+  },
 };
