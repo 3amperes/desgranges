@@ -3,8 +3,7 @@ import React from 'react';
 const Cocktail = props => (
   <svg
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width={388}
-    height={376}
+    viewBox="0 0 388 376"
     {...props}
   >
     <defs>

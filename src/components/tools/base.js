@@ -25,16 +25,18 @@ export const PageHeader = ({ children, title, isBig }) => (
 export const Container = ({ children, height = '100vh', ...props }) => (
   <React.Fragment>
     <Mobile>
-      <Grid
-        columns={GRID.MOBILE.COLUMNS}
-        gap={GRID.MOBILE.GAP}
-        justifyContent="center"
-        alignContent="center"
-        height={height}
-        {...props}
-      >
-        {children}
-      </Grid>
+      <Box height={height}>
+        <Grid
+          columns={GRID.MOBILE.COLUMNS}
+          gap={GRID.MOBILE.GAP}
+          justifyContent="center"
+          alignContent="center"
+          height="100%"
+          {...props}
+        >
+          {children}
+        </Grid>
+      </Box>
     </Mobile>
     <Tablet>
       <Grid
@@ -65,9 +67,16 @@ export const Container = ({ children, height = '100vh', ...props }) => (
 
 export const CenterSection = ({ children, height = '100vh', ...props }) => (
   <Container height={height} {...props}>
-    <Cell width={12} center>
-      {children}
-    </Cell>
+    <Mobile>
+      <Cell width={6} center>
+        {children}
+      </Cell>
+    </Mobile>
+    <Default>
+      <Cell width={12} center>
+        {children}
+      </Cell>
+    </Default>
   </Container>
 );
 
