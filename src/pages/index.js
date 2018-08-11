@@ -12,6 +12,7 @@ import {
   VegetationLeft,
   VegetationRight,
   ProjectList,
+  Default,
   Desktop,
   Tablet,
   Mobile,
@@ -74,7 +75,7 @@ const Intro = () => (
         </Container>
       </ContentWrapper>
     </Mobile>
-    <Desktop>
+    <Default>
       <ContentWrapper>
         <Container
           height={introHeight}
@@ -105,7 +106,7 @@ const Intro = () => (
           <VegetationRight height="100%" />
         </VegetationRightWrapper>
       </ContentWrapper>
-    </Desktop>
+    </Default>
   </div>
 );
 
@@ -134,16 +135,14 @@ const SectionOne = () => (
     <Mobile>
       <Cell width={6} center>
         <Lunettes />
-      </Cell>
-      <Cell width={6} center>
         <SectionOneContent />
       </Cell>
     </Mobile>
     <Tablet>
-      <Cell width={12}>
+      <Cell width={6} left={2}>
         <SectionOneContent />
       </Cell>
-      <Cell width={3} left={8} middle>
+      <Cell width={4} left={9} middle>
         <Lunettes />
       </Cell>
     </Tablet>
@@ -179,17 +178,15 @@ const SectionTwo = () => (
     <Mobile>
       <Cell width={6} center>
         <Cocktail />
-      </Cell>
-      <Cell width={6} center>
         <SectionTwoContent />
       </Cell>
     </Mobile>
     <Tablet>
-      <Cell width={12}>
-        <SectionOneContent />
+      <Cell width={4} middle>
+        <Cocktail />
       </Cell>
-      <Cell width={12}>
-        <Lunettes />
+      <Cell width={6} left={6}>
+        <SectionTwoContent />
       </Cell>
     </Tablet>
     <Desktop>
@@ -199,7 +196,6 @@ const SectionTwo = () => (
       <Cell width={3} left={8}>
         <SectionTwoContent />
       </Cell>
-      >
     </Desktop>
   </Container>
 );
@@ -237,10 +233,11 @@ export const query = graphql`
           }
           highlight
           thumbnail {
-            resolutions(width: 390, height: 390) {
+            sizes(maxWidth: 400, maxHeight: 400) {
               # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
-              ...GatsbyContentfulResolutions
+              ...GatsbyContentfulSizes
             }
+            title
           }
         }
       }

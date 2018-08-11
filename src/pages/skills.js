@@ -7,6 +7,8 @@ import {
   Paragraph,
   ContaCta,
   SurTitle,
+  Default,
+  Mobile,
 } from 'components';
 import { themeGet } from 'styled-system/dist/util';
 
@@ -17,17 +19,34 @@ const Description = Text.extend`
   }
 `;
 const Section = ({ children, height, title, surtitle }) => (
-  <Container height={height} alignContent="center" gap="38px">
-    <Cell width={8} left={3} middle>
-      <SurTitle label={surtitle} />
-      <Heading mb={0} textAlign="center">
-        {title}
-      </Heading>
-    </Cell>
-    <Cell width={6} left={4} middle>
-      {children}
-    </Cell>
-  </Container>
+  <React.Fragment>
+    <Mobile>
+      <Container height="100vh">
+        <Cell width={6} center middle>
+          <SurTitle label={surtitle} />
+          <Heading mb={0} textAlign="center">
+            {title}
+          </Heading>
+        </Cell>
+        <Cell width={6} middle>
+          {children}
+        </Cell>
+      </Container>
+    </Mobile>
+    <Default>
+      <Container height={height} alignContent="center">
+        <Cell width={8} left={3} middle>
+          <SurTitle label={surtitle} />
+          <Heading mb={0} textAlign="center">
+            {title}
+          </Heading>
+        </Cell>
+        <Cell width={6} left={4} middle>
+          {children}
+        </Cell>
+      </Container>
+    </Default>
+  </React.Fragment>
 );
 
 const SkillsPage = ({ data }) => {

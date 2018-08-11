@@ -3,7 +3,7 @@ import { Transition } from 'react-transition-group';
 import { TimelineLite, Elastic } from 'gsap';
 import styled from 'styled-components';
 import { color, themeGet } from 'styled-system';
-import { Container, Cell, Text, Link } from 'components';
+import { Container, Cell, Text, Link, Default, Mobile } from 'components';
 import { transition } from 'utils/mixins';
 import { ZINDEXBASE } from 'utils/constants';
 
@@ -61,17 +61,34 @@ const defaultStyle = {
   transform: 'translate(0) skewX(0)',
 };
 
-const NavItem = ({ label, innerRef, ...linkProps }) => {
-  return (
-    <Cell height={1} width={8} left={3} center middle>
+class NavItem extends Component {
+  renderNav = () => {
+    const { label, innerRef, ...linkProps } = this.props;
+    return (
       <div ref={innerRef} style={defaultStyle}>
         <Text fontWeight="700" letterSpacing="4px" fontSize={3} isUppercase>
           <Link {...linkProps}>{label}</Link>
         </Text>
       </div>
-    </Cell>
-  );
-};
+    );
+  };
+  render() {
+    return (
+      <React.Fragment>
+        <Mobile>
+          <Cell height={1} width={6} center middle>
+            {this.renderNav()}
+          </Cell>
+        </Mobile>
+        <Default>
+          <Cell height={1} width={8} left={3} center middle>
+            {this.renderNav()}
+          </Cell>
+        </Default>
+      </React.Fragment>
+    );
+  }
+}
 class Navigation extends Component {
   scrollWidth = 0;
 

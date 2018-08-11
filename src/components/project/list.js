@@ -6,7 +6,7 @@ const ProjectListContainer = ({ children }) => (
   <React.Fragment>
     <Mobile>{children}</Mobile>
     <Default>
-      <Container rows="repeat(3, 80px auto)">{children}</Container>
+      <Container rows="repeat(3, 50px auto)">{children}</Container>
     </Default>
   </React.Fragment>
 );

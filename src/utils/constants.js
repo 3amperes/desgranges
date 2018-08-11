@@ -14,7 +14,7 @@ export const GRID = {
     GAP: '15px',
   },
   TABLET: {
-    COLUMNS: 'repeat(4, 50px)',
+    COLUMNS: 'repeat(12, 50px)',
     GAP: '15px',
   },
   DESKTOP: {

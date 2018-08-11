@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { Cell, Box, Text, Default, Mobile } from 'components';
+import { Cell, Box, Text, Desktop, Tablet, Mobile } from 'components';
 import { absolute, transition } from 'utils/mixins';
 
 const Image = styled(Img)`
@@ -61,13 +61,14 @@ class ProjectLink extends Component {
   };
   render() {
     const { project } = this.props;
+    console.log(project);
     return (
       <ProjectLinkWrapper
         to={`/projets/${project.slug}`}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >
-        <Image resolutions={project.thumbnail.resolutions} />
+        <Img sizes={project.thumbnail.sizes} />
         <Description
           isOver={this.state.isOver}
           title={project.title}
@@ -85,12 +86,18 @@ const ProjectItem = ({ index, project }) => (
         <ProjectLink project={project} />
       </Box>
     </Mobile>
-    <Default>
+    <Tablet>
+      <Cell width={5} left={index % 2 ? 0 : 2} height={2}>
+        <ProjectLink project={project} />
+      </Cell>
+      {index === 0 && <Cell width={5} />}
+    </Tablet>
+    <Desktop>
       <Cell width={4} left={index % 2 ? 0 : 3} height={2}>
         <ProjectLink project={project} />
       </Cell>
       {index === 0 && <Cell width={4} />}
-    </Default>
+    </Desktop>
   </React.Fragment>
 );
 
