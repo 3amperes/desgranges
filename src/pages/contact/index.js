@@ -5,10 +5,15 @@ import {
   Textearea,
   Container,
   Cell,
+  Button,
   Paragraph,
   PageHeader,
   Box,
   Text,
+  Mobile,
+  Tablet,
+  Desktop,
+  Default,
 } from 'components';
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -86,107 +91,126 @@ class ContactPage extends React.Component {
       });
   };
 
-  render() {
+  renderForm = () => {
     const { model, errors, submitted } = this.state;
-
     return (
-      <Container height="85vh">
-        <Cell width={4} left={5}>
-          <PageHeader title="Écrivez-moi">
-            <Paragraph>
-              Une dissert ou un haïku,<br /> un pamphlet ou un sonnet,<br />
-              vous lire me fera plaisir !
-            </Paragraph>
-          </PageHeader>
-        </Cell>
-        <Cell width={4} left={5}>
-          <Box py="20px">
-            <form
-              name="contact"
-              method="post"
-              action="/contact/success"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              onSubmit={this.handleSubmit}
-            >
-              <p style={{ display: 'none' }}>
-                {/* Required for javascript submission*/}
-                <input type="hidden" name="form-name" value="contact" />
-                {/* Hidden field to avoid bot submission */}
-                <label>
-                  Don’t fill this out if you're human:{' '}
-                  <input name="bot-field" />
-                </label>
-              </p>
+      <Box py="20px">
+        <form
+          name="contact"
+          method="post"
+          action="/contact/success"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          onSubmit={this.handleSubmit}
+        >
+          <p style={{ display: 'none' }}>
+            {/* Required for javascript submission*/}
+            <input type="hidden" name="form-name" value="contact" />
+            {/* Hidden field to avoid bot submission */}
+            <label>
+              Don’t fill this out if you're human: <input name="bot-field" />
+            </label>
+          </p>
 
-              <Field
-                label="Prénom"
-                type="text"
-                id="firstName"
-                name="firstName"
-                placeholder="John"
-                value={this.state.model.firstName}
-                onChange={this.handleInputChange}
-              />
-              {submitted &&
-                !!errors.firstName &&
-                errors.firstName.required && (
-                  <Text color="red">Merci d'indiquer votre prénom</Text>
-                )}
+          <Field
+            label="Prénom"
+            type="text"
+            id="firstName"
+            name="firstName"
+            placeholder="John"
+            value={model.firstName}
+            onChange={this.handleInputChange}
+          />
+          {submitted &&
+            !!errors.firstName &&
+            errors.firstName.required && (
+              <Text color="red">Merci d'indiquer votre prénom</Text>
+            )}
 
-              <Field
-                label="Nom"
-                type="text"
-                id="lastName"
-                name="lastName"
-                placeholder="Doe"
-                value={this.state.model.lastName}
-                onChange={this.handleInputChange}
-              />
-              {submitted &&
-                !!errors.lastName &&
-                errors.lastName.required && (
-                  <Text color="red">Merci d'indiquer votre nom</Text>
-                )}
+          <Field
+            label="Nom"
+            type="text"
+            id="lastName"
+            name="lastName"
+            placeholder="Doe"
+            value={model.lastName}
+            onChange={this.handleInputChange}
+          />
+          {submitted &&
+            !!errors.lastName &&
+            errors.lastName.required && (
+              <Text color="red">Merci d'indiquer votre nom</Text>
+            )}
 
-              <Field
-                label="Adresse email"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="john.doe@company.com"
-                value={this.state.model.email}
-                onChange={this.handleInputChange}
-              />
-              {submitted &&
-                !!errors.email && (
-                  <Text color="red">
-                    {errors.email.required
-                      ? `Merci d'indiquer votre adresse email`
-                      : `L'adresse email n'est pas au bon format`}
-                  </Text>
-                )}
+          <Field
+            label="Adresse email"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="john.doe@company.com"
+            value={model.email}
+            onChange={this.handleInputChange}
+          />
+          {submitted &&
+            !!errors.email && (
+              <Text color="red">
+                {errors.email.required
+                  ? `Merci d'indiquer votre adresse email`
+                  : `L'adresse email n'est pas au bon format`}
+              </Text>
+            )}
 
-              <Field label="Message">
-                <Textearea
-                  id="message"
-                  name="message"
-                  placeholder="Hello Romain,"
-                  rows={5}
-                  value={this.state.model.message}
-                  onChange={this.handleInputChange}
-                />
-              </Field>
-              {submitted &&
-                !!errors.message &&
-                errors.message.required && (
-                  <Text color="red">Merci de saisir un message</Text>
-                )}
-
-              <button type="submit">Envoyer</button>
-            </form>
+          <Field label="Message">
+            <Textearea
+              id="message"
+              name="message"
+              placeholder="Hello Romain,"
+              rows={1}
+              value={model.message}
+              onChange={this.handleInputChange}
+            />
+          </Field>
+          {submitted &&
+            !!errors.message &&
+            errors.message.required && (
+              <Text color="red">Merci de saisir un message</Text>
+            )}
+          <Box textAlign="center" py={4}>
+            <Button type="submit" label="Envoyer" />
           </Box>
-        </Cell>
+        </form>
+      </Box>
+    );
+  };
+
+  renderHeader = () => (
+    <PageHeader title="Écrivez-moi">
+      <Paragraph>
+        Une dissert ou un haïku,
+        <br /> un pamphlet ou un sonnet,
+        <br />
+        vous lire me fera plaisir !
+      </Paragraph>
+    </PageHeader>
+  );
+
+  render() {
+    return (
+      <Container height="auto" rows="300px auto">
+        <Mobile>
+          <Cell width={6} middle>
+            {this.renderHeader()}
+          </Cell>
+          <Cell width={6}>{this.renderForm()}</Cell>
+        </Mobile>
+        <Default>
+          <Cell width={4} left={5} middle>
+            {this.renderHeader()}
+          </Cell>
+          <Cell width={4} left={5}>
+            {this.renderForm()}
+          </Cell>
+        </Default>
       </Container>
     );
   }

@@ -1,9 +1,10 @@
 import system from 'system-components';
 
 export const Box = system(
-  { blacklist: ['overflowHidden', 'isOver'] },
+  { blacklist: ['overflowHidden', 'isOver', 'scrollWidth'] },
   'space',
   'width',
+  'height',
   'color',
   'textAlign'
 );

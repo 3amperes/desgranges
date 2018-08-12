@@ -1,6 +1,9 @@
 export const ZINDEXBASE = 100;
+
+const NAVBAR = 120;
 export const SIZES = {
-  NAVBAR: 120,
+  NAVBAR,
+  INTRO: `calc(100vh - ${NAVBAR}px)`,
 };
 
 export const TRANSITION = {
@@ -9,6 +12,16 @@ export const TRANSITION = {
 };
 
 export const GRID = {
-  COLUMNS: 'repeat(12, minmax(30px, 70px))',
-  GAP: '38px',
+  MOBILE: {
+    COLUMNS: 'repeat(6, 38px)',
+    GAP: '15px',
+  },
+  TABLET: {
+    COLUMNS: 'repeat(12, 50px)',
+    GAP: '15px',
+  },
+  DESKTOP: {
+    COLUMNS: 'repeat(12, minmax(30px, 70px))',
+    GAP: '38px',
+  },
 };

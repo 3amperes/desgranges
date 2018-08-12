@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { Container } from 'components';
+import { Container, Default, Mobile } from 'components';
 import ProjectItem from './item';
 
+const ProjectListContainer = ({ children }) => (
+  <React.Fragment>
+    <Mobile>{children}</Mobile>
+    <Default>
+      <Container rows="repeat(3, 50px auto)">{children}</Container>
+    </Default>
+  </React.Fragment>
+);
 class ProjectList extends Component {
   render() {
     return (
-      <div>
-        <Container rows="repeat(3, 80px auto)">
-          {this.props.projects.map(({ node }, i) => (
-            <ProjectItem project={node} index={i} key={node.id} />
-          ))}
-        </Container>
-      </div>
+      <ProjectListContainer>
+        {this.props.projects.map(({ node }, i) => (
+          <ProjectItem project={node} index={i} key={node.id} />
+        ))}
+      </ProjectListContainer>
     );
   }
 }

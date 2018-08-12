@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Lunettes = ({ title, ...props }) => (
-  <svg width={386} height={160} {...props}>
+  <svg viewBox="0 0 386 160" {...props}>
     <g fill="none" fillRule="evenodd">
       <ellipse cx={193} cy={128} fill="#F99E78" rx={193} ry={32} />
       <path
