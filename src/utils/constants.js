@@ -1,6 +1,9 @@
 export const ZINDEXBASE = 100;
+
+const NAVBAR = 120;
 export const SIZES = {
-  NAVBAR: 120,
+  NAVBAR,
+  INTRO: `calc(100vh - ${NAVBAR}px)`,
 };
 
 export const TRANSITION = {

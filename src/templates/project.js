@@ -1,7 +1,6 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import {
-  CenterSection,
   Container,
   SurTitle,
   Paragraph,
@@ -9,12 +8,59 @@ import {
   Cell,
   Box,
   Heading,
+  Mobile,
+  Default,
+  Tablet,
+  Desktop,
 } from 'components';
+
+import { SIZES } from 'utils/constants';
+
+const ContentcontainerWrapper = Box.extend`
+  img {
+    display: inline-block;
+    max-width: 100%;
+    margin: 50px auto;
+  }
+`;
 
 const SubTitle = ({ children }) => (
   <Heading is="h2" fontSize={7}>
     {children}
   </Heading>
+);
+
+const ContentContainer = ({ html }) => (
+  <ContentcontainerWrapper>
+    <Container height="auto">
+      <Mobile>
+        <Cell
+          width={6}
+          dangerouslySetInnerHTML={{
+            __html: html,
+          }}
+        />
+      </Mobile>
+      <Tablet>
+        <Cell
+          width={10}
+          left={2}
+          dangerouslySetInnerHTML={{
+            __html: html,
+          }}
+        />
+      </Tablet>
+      <Desktop>
+        <Cell
+          width={8}
+          left={3}
+          dangerouslySetInnerHTML={{
+            __html: html,
+          }}
+        />
+      </Desktop>
+    </Container>
+  </ContentcontainerWrapper>
 );
 
 const ProjectTemplate = ({ data }) => {
@@ -27,49 +73,54 @@ const ProjectTemplate = ({ data }) => {
     main,
     footer,
   } = data.contentfulProject;
+
+  const renderObject = () => (
+    <React.Fragment>
+      <SubTitle>Objectif</SubTitle>
+      <Paragraph>{object}</Paragraph>
+    </React.Fragment>
+  );
+  const renderAswer = () => (
+    <React.Fragment>
+      <SubTitle>Solution</SubTitle>
+      <Paragraph>{answer}</Paragraph>
+    </React.Fragment>
+  );
   return (
     <div>
-      <CenterSection height="150px">
-        {!!tag && <SurTitle label={tag.title} />}
-        <Heading>{title}</Heading>
-      </CenterSection>
-      <Container>
-        <Cell width={8} left={3}>
-          <Img sizes={thumbnail.sizes} />
-        </Cell>
-      </Container>
-      <Container height="400px">
-        <Cell width={3} left={4}>
-          <SubTitle>Objectif</SubTitle>
-          <Paragraph>{object}</Paragraph>
-        </Cell>
-        <Cell width={3}>
-          <SubTitle>Solution</SubTitle>
-          <Paragraph>{answer}</Paragraph>
-        </Cell>
-      </Container>
-      {!!main && (
+      <Mobile>
+        <Box textAlign="center">
+          {!!tag && <SurTitle label={tag.title} />}
+          <Heading>{title}</Heading>
+        </Box>
+        <Img sizes={thumbnail.sizes} />
+        <Box py={6}>
+          <Container height="auto">
+            <Cell width={6}>{renderObject()}</Cell>
+            <Cell width={6}>{renderAswer()}</Cell>
+          </Container>
+        </Box>
+      </Mobile>
+      <Default>
+        <Container rows="150px auto" height={SIZES.INTRO}>
+          <Cell width={8} left={3} center>
+            {!!tag && <SurTitle label={tag.title} />}
+            <Heading>{title}</Heading>
+          </Cell>
+          <Cell width={8} left={3}>
+            <Img sizes={thumbnail.sizes} />
+          </Cell>
+        </Container>
         <Container height="auto">
-          <Cell
-            width={8}
-            left={3}
-            dangerouslySetInnerHTML={{
-              __html: main.childMarkdownRemark.html,
-            }}
-          />
+          <Cell width={3} left={4}>
+            {renderObject()}
+          </Cell>
+          <Cell width={3}>{renderAswer()}</Cell>
         </Container>
-      )}
-      {!!footer && (
-        <Container height="500px">
-          <Cell
-            width={6}
-            left={4}
-            dangerouslySetInnerHTML={{
-              __html: footer.childMarkdownRemark.html,
-            }}
-          />
-        </Container>
-      )}
+      </Default>
+      {!!main && <ContentContainer html={main.childMarkdownRemark.html} />}
+      {!!footer && <ContentContainer html={footer.childMarkdownRemark.html} />}
+      <ContaCta />
     </div>
   );
 };

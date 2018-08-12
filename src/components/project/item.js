@@ -61,7 +61,6 @@ class ProjectLink extends Component {
   };
   render() {
     const { project } = this.props;
-    console.log(project);
     return (
       <ProjectLinkWrapper
         to={`/projets/${project.slug}`}

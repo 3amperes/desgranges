@@ -21,8 +21,6 @@ import {
 
 import { SIZES } from 'utils/constants';
 
-const introHeight = `calc(100vh - ${SIZES.NAVBAR}px)`;
-
 const ContentWrapper = styled.div`
   position: relative;
   overflow: hidden;
@@ -53,7 +51,7 @@ const Intro = () => (
     <Mobile>
       <ContentWrapper>
         <Container
-          height={introHeight}
+          height={SIZES.INTRO}
           rows={'1fr auto 80px'}
           alignContent="end"
         >
@@ -79,7 +77,7 @@ const Intro = () => (
     <Default>
       <ContentWrapper>
         <Container
-          height={introHeight}
+          height={SIZES.INTRO}
           rows={'auto auto 40%'}
           alignContent="end"
         >
