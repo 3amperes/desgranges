@@ -4,6 +4,7 @@ import {
   ButtonLink,
   Paragraph,
   Container,
+  Box,
   Cell,
   ContaCta,
   Heading,
@@ -131,30 +132,38 @@ const SectionOneContent = () => (
 );
 
 const SectionOne = () => (
-  <Container>
+  <React.Fragment>
     <Mobile>
-      <Cell width={6} center>
-        <Lunettes />
-        <SectionOneContent />
-      </Cell>
+      <Container height="auto" rows={'250px minmax(min-content, max-content)'}>
+        <Cell width={4} left={2} middle>
+          <Lunettes />
+        </Cell>
+        <Cell width={6} center>
+          <SectionOneContent />
+        </Cell>
+      </Container>
     </Mobile>
     <Tablet>
-      <Cell width={6} left={2}>
-        <SectionOneContent />
-      </Cell>
-      <Cell width={4} left={9} middle>
-        <Lunettes />
-      </Cell>
+      <Container>
+        <Cell width={6} left={2}>
+          <SectionOneContent />
+        </Cell>
+        <Cell width={4} left={9} middle>
+          <Lunettes />
+        </Cell>
+      </Container>
     </Tablet>
     <Desktop>
-      <Cell width={3} left={3}>
-        <SectionOneContent />
-      </Cell>
-      <Cell width={3} left={8} middle>
-        <Lunettes />
-      </Cell>
+      <Container>
+        <Cell width={3} left={3}>
+          <SectionOneContent />
+        </Cell>
+        <Cell width={3} left={8} middle>
+          <Lunettes />
+        </Cell>
+      </Container>
     </Desktop>
-  </Container>
+  </React.Fragment>
 );
 
 const SectionTwoContent = () => (
@@ -174,30 +183,43 @@ const SectionTwoContent = () => (
 );
 
 const SectionTwo = () => (
-  <Container>
+  <React.Fragment>
     <Mobile>
-      <Cell width={6} center>
-        <Cocktail />
-        <SectionTwoContent />
-      </Cell>
+      <Box py={6}>
+        <Container
+          height="auto"
+          rows={'250px minmax(min-content, max-content)'}
+        >
+          <Cell width={4} left={2} middle>
+            <Cocktail />
+          </Cell>
+          <Cell width={6} center>
+            <SectionTwoContent />
+          </Cell>
+        </Container>
+      </Box>
     </Mobile>
     <Tablet>
-      <Cell width={4} middle>
-        <Cocktail />
-      </Cell>
-      <Cell width={6} left={6}>
-        <SectionTwoContent />
-      </Cell>
+      <Container>
+        <Cell width={4} middle>
+          <Cocktail />
+        </Cell>
+        <Cell width={6} left={6}>
+          <SectionTwoContent />
+        </Cell>
+      </Container>
     </Tablet>
     <Desktop>
-      <Cell width={3} left={3} middle>
-        <Cocktail />
-      </Cell>
-      <Cell width={3} left={8}>
-        <SectionTwoContent />
-      </Cell>
+      <Container>
+        <Cell width={3} left={3} middle>
+          <Cocktail />
+        </Cell>
+        <Cell width={3} left={8}>
+          <SectionTwoContent />
+        </Cell>
+      </Container>
     </Desktop>
-  </Container>
+  </React.Fragment>
 );
 
 const IndexPage = ({ data }) => {

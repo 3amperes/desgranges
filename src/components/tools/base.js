@@ -25,18 +25,16 @@ export const PageHeader = ({ children, title, isBig }) => (
 export const Container = ({ children, height = '100vh', ...props }) => (
   <React.Fragment>
     <Mobile>
-      <Box height={height}>
-        <Grid
-          columns={GRID.MOBILE.COLUMNS}
-          gap={GRID.MOBILE.GAP}
-          justifyContent="center"
-          alignContent="center"
-          height="100%"
-          {...props}
-        >
-          {children}
-        </Grid>
-      </Box>
+      <Grid
+        columns={GRID.MOBILE.COLUMNS}
+        gap={GRID.MOBILE.GAP}
+        justifyContent="center"
+        alignContent="center"
+        height={height}
+        {...props}
+      >
+        {children}
+      </Grid>
     </Mobile>
     <Tablet>
       <Grid

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Container,
   Cell,
@@ -10,32 +10,33 @@ import {
   Mobile,
 } from 'components';
 
-const Intro = () => (
-  <React.Fragment>
-    <Mobile>
-      <Container height="100vh">
-        <Cell center middle width={6}>
-          <Heading>Projets</Heading>
-          <Paragraph>
-            Une sélection de projets réalisés sur les 3 dernières années en
-            freelance et en agence.
-          </Paragraph>
-        </Cell>
+class Intro extends Component {
+  renderContent = () => (
+    <div>
+      <Heading>Projets</Heading>
+      <Paragraph>
+        Une sélection de projets réalisés sur les 3 dernières années en
+        freelance et en agence.
+      </Paragraph>
+    </div>
+  );
+  render() {
+    return (
+      <Container height="350px">
+        <Mobile>
+          <Cell center middle width={4} left={2}>
+            {this.renderContent()}
+          </Cell>
+        </Mobile>
+        <Default>
+          <Cell center middle width={6} left={4}>
+            {this.renderContent()}
+          </Cell>
+        </Default>
       </Container>
-    </Mobile>
-    <Default>
-      <Container height="200px">
-        <Cell center width={6} left={4}>
-          <Heading>Projets</Heading>
-          <Paragraph>
-            Une sélection de projets réalisés sur les 3 dernières années en
-            freelance et en agence.
-          </Paragraph>
-        </Cell>
-      </Container>
-    </Default>
-  </React.Fragment>
-);
+    );
+  }
+}
 
 const ProjectPage = ({ data }) => {
   const projects =

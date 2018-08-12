@@ -21,7 +21,7 @@ const Description = Text.extend`
 const Section = ({ children, height, title, surtitle }) => (
   <React.Fragment>
     <Mobile>
-      <Container height="100vh">
+      <Container height="auto">
         <Cell width={6} center middle>
           <SurTitle label={surtitle} />
           <Heading mb={0} textAlign="center">
