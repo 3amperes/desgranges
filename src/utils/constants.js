@@ -21,7 +21,7 @@ export const GRID = {
     GAP: '15px',
   },
   DESKTOP: {
-    COLUMNS: 'repeat(12, minmax(30px, 70px))',
+    COLUMNS: 'repeat(12, minmax(30px, 90px))',
     GAP: '38px',
   },
 };

@@ -1,9 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   ButtonLink,
   Paragraph,
   Container,
+  Section,
+  SurTitle,
   Box,
   Cell,
   ContaCta,
@@ -17,6 +19,7 @@ import {
   Desktop,
   Tablet,
   Mobile,
+  DecorationWrapper,
 } from 'components';
 
 import { SIZES } from 'utils/constants';
@@ -52,8 +55,8 @@ const Intro = () => (
       <ContentWrapper>
         <Container
           height={SIZES.INTRO}
-          rows={'1fr auto 80px'}
-          alignContent="end"
+          rows={'auto auto 80px'}
+          alignContent="center"
         >
           <Cell width={6} center middle>
             <Heading fontSize={9} mb={0}>
@@ -66,7 +69,7 @@ const Intro = () => (
               création d’interfaces web et de supports print.
             </Paragraph>
           </Cell>
-          <Cell width={6} center middle>
+          <Cell width={6} center top>
             <div>
               <ButtonLink label="Découvrir" to="/about" />
             </div>
@@ -78,7 +81,7 @@ const Intro = () => (
       <ContentWrapper>
         <Container
           height={SIZES.INTRO}
-          rows={'auto auto 40%'}
+          rows={'auto auto 50% 100px'}
           alignContent="end"
         >
           <Cell width={12} center middle>
@@ -92,18 +95,19 @@ const Intro = () => (
               création d’interfaces web et de supports print.
             </Paragraph>
           </Cell>
+          <Cell width="12" />
           <Cell width={12} center middle>
             <div>
               <ButtonLink label="Découvrir" to="/about" />
             </div>
           </Cell>
         </Container>
-        <VegetationLeftWrapper>
-          <VegetationLeft height="100%" />
-        </VegetationLeftWrapper>
-        <VegetationRightWrapper>
-          <VegetationRight height="100%" />
-        </VegetationRightWrapper>
+        <DecorationWrapper width="30%" left="-10%">
+          <VegetationLeft width="100%" />
+        </DecorationWrapper>
+        <DecorationWrapper width="30%" right="-10%">
+          <VegetationRight width="100%" />
+        </DecorationWrapper>
       </ContentWrapper>
     </Default>
   </div>
@@ -220,15 +224,51 @@ const SectionTwo = () => (
   </React.Fragment>
 );
 
+const RightDecoration = ({ svgRef, ...props }) => (
+  <DecorationWrapper right="0" ref={svgRef} {...props}>
+    <svg viewBox="0 0 211 235" width="100%">
+      <path
+        d="M276.08 38.155c-51.8 7.5-76.332 14.47-146.98-21.871C58.45-20.06 3.373 12.13 3.373 38.154c0 26.024 49.58 19.449 65.155 49.18 15.574 29.73-49.734 20.497-65.155 58.41-15.421 37.911 24.769 98.675 65.155 87.469 40.386-11.207 68.409-75.914 116.624-75.914 32.144 0 64.952 42.567 98.426 127.701 29.534-169.563 27.034-251.845-7.499-246.845z"
+        fill="#64B8B4"
+        fillRule="evenodd"
+      />
+    </svg>
+  </DecorationWrapper>
+);
+
+const LeftDecoration = ({ svgRef, ...props }) => (
+  <DecorationWrapper left="0" ref={svgRef} {...props}>
+    <svg viewBox="0 0 218 268" width="100%">
+      <path
+        d="M-58.54 50.466c42.097-8.319 149.763-77.518 196.86-38.76 47.099 38.76-16.354 80.06-16.354 121.372S218 158.699 218 206.027c0 47.327-103.761 77.35-175.949 53.738-72.188-23.612-117.561-32.376-124.298-27.994-6.736 4.382-18.389-172.986 23.708-181.305z"
+        fill="#F99E78"
+        fillRule="evenodd"
+      />
+    </svg>
+  </DecorationWrapper>
+);
+
 const IndexPage = ({ data }) => {
   const projects =
     data && data.allContentfulProject && data.allContentfulProject.edges;
   return (
     <div>
       <Intro />
-      <SectionOne />
-      <SectionTwo />
-      {!!projects && <ProjectList projects={projects} />}
+      <Section>
+        <RightDecoration width="35%" />
+        <SectionOne />
+      </Section>
+      <Section>
+        <LeftDecoration width="35%" />
+        <SectionTwo />
+      </Section>
+      <Section>
+        <Box textAlign="center" mb={5}>
+          <SurTitle label="Quoi de neuf ?" />
+          <Heading is="h2">Les derniers projets</Heading>
+        </Box>
+        {!!projects && <ProjectList projects={projects} />}
+      </Section>
       <ContaCta />
     </div>
   );

@@ -14,15 +14,13 @@ export const Mobile = props => <Responsive {...props} maxWidth={767} />;
 export const Default = props => <Responsive {...props} minWidth={768} />;
 
 export const PageHeader = ({ children, title, isBig }) => (
-  <header>
-    <Box textAlign="center">
-      <Heading fontSize={isBig ? 9 : 8}>{title}</Heading>
-      {children}
-    </Box>
-  </header>
+  <Box is="header" textAlign="center">
+    <Heading fontSize={isBig ? 9 : 8}>{title}</Heading>
+    {children}
+  </Box>
 );
 
-export const Container = ({ children, height = '100vh', ...props }) => (
+export const Container = ({ children, height = 'auto', ...props }) => (
   <React.Fragment>
     <Mobile>
       <Grid
@@ -77,6 +75,21 @@ export const CenterSection = ({ children, height = '100vh', ...props }) => (
     </Default>
   </Container>
 );
+
+export const Section = ({ children }) => (
+  <Box is="section" py={6} position="relative">
+    {children}
+  </Box>
+);
+
+export const DecorationWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: ${({ left }) => left || 'auto'};
+  right: ${({ right }) => right || 'auto'};
+  z-index: 0;
+  width: ${({ width }) => width};
+`;
 
 export const Paragraph = ({ children, mb = 3, ...props }) => (
   <Text is="p" display="block" mt={0} mb={mb} {...props}>

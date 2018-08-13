@@ -33,6 +33,8 @@ const Grid = styled(tag.div).attrs({
   ${({ rows }) => rows && `grid-template-rows: ${frGetter(rows)}`};
   grid-template-columns: ${({ columns = 12 }) => frGetter(columns)};
   grid-gap: ${gap};
+  position: relative;
+  z-index: 100;
   ${({ areas }) => areas && `grid-template-areas: ${formatAreas(areas)}`};
   ${({ justifyContent }) =>
     justifyContent && `justify-content: ${justifyContent}`};

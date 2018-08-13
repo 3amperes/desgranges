@@ -6,7 +6,8 @@ export const Box = system(
   'width',
   'height',
   'color',
-  'textAlign'
+  'textAlign',
+  'position'
 );
 
 export const Text = system(
