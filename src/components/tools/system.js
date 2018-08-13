@@ -5,6 +5,7 @@ export const Box = system(
   'space',
   'width',
   'height',
+  'minHeight',
   'color',
   'textAlign',
   'position'

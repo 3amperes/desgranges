@@ -9,8 +9,11 @@ import {
   SurTitle,
   Default,
   Mobile,
+  SkillsLeft,
+  SkillsRight,
 } from 'components';
 import { themeGet } from 'styled-system/dist/util';
+import { Box } from '../components';
 
 const Description = Text.extend`
   p {
@@ -34,7 +37,7 @@ const Section = ({ children, height, title, surtitle }) => (
       </Container>
     </Mobile>
     <Default>
-      <Container height={height} alignContent="center">
+      <Container height={height} alignContent="center" rows="300px auto">
         <Cell width={8} left={3} middle>
           <SurTitle label={surtitle} />
           <Heading mb={0} textAlign="center">
@@ -61,20 +64,21 @@ const SkillsPage = ({ data }) => {
       {expandedSkills.map(({ node }, index) => {
         const { title, baseline, description, expand } = node;
         return (
-          <Section
-            key={title}
-            surtitle={title}
-            title={baseline || ''}
-            height={index === 0 ? '85vh' : '100vh'}
-          >
-            {description && (
-              <Description
-                dangerouslySetInnerHTML={{
-                  __html: description.childMarkdownRemark.html,
-                }}
-              />
-            )}
-          </Section>
+          <Box key={title} py={6} minHeight="100vh">
+            <Section surtitle={title} title={baseline || ''} height="100%">
+              {description && (
+                <div>
+                  <SkillsLeft index={index} width="20%" />
+                  <SkillsRight index={index} width="20%" />
+                  <Description
+                    dangerouslySetInnerHTML={{
+                      __html: description.childMarkdownRemark.html,
+                    }}
+                  />
+                </div>
+              )}
+            </Section>
+          </Box>
         );
       })}
       {otherSkills.length > 0 && (
@@ -84,9 +88,12 @@ const SkillsPage = ({ data }) => {
           title="D'autres disciplines comme :"
           height="100vh"
         >
+          <SkillsLeft width="20%" />
+          <SkillsRight width="20%" />
           <Paragraph fontWeight="700">{otherSkills.join(', ')} ...</Paragraph>
         </Section>
       )}
+      <ContaCta />
     </div>
   );
 };
