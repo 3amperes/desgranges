@@ -3,6 +3,7 @@ import { AnimatedLink } from 'components/layout/AnimatedScreen';
 import styled from 'styled-components';
 import { Text, Box } from 'components';
 import { resetButton, absolute, transition } from 'utils/mixins';
+import { themeGet } from 'styled-system';
 
 const ButtonWrapper = styled.button`
   ${resetButton};
@@ -24,7 +25,27 @@ const ButtonWrapper = styled.button`
   }
 `;
 
+const CtaWrapper = ButtonWrapper.extend`
+  background-color: ${themeGet('colors.peach', 'peach')};
+  padding: 0;
+  width: 205px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  ${transition({ property: 'background-color' })};
+
+  &:hover {
+    /* lighter by 10% */
+    background-color: #f9a785;
+  }
+
+  span {
+    color: ${themeGet('colors.black', 'black')};
+  }
+`;
+
 const LinkWrapper = ButtonWrapper.withComponent(AnimatedLink);
+const CtaLinkWrapper = CtaWrapper.withComponent(AnimatedLink);
 
 const ButtonBorder = Box.extend`
   width: 100%;
@@ -76,7 +97,35 @@ function buttonHoc(name, Wrapper) {
   return ButtonComponent;
 }
 
+function ctaHoc(name, Wrapper) {
+  class CtaComponent extends Component {
+    render() {
+      const { label, ...buttonProps } = this.props;
+      return (
+        <Wrapper {...buttonProps}>
+          <Text
+            isUppercase
+            is="span"
+            display="inline-block"
+            fontSize={1}
+            fontWeight="600"
+            lineHeight="16px"
+            letterSpacing="2px"
+          >
+            {label}
+          </Text>
+        </Wrapper>
+      );
+    }
+  }
+  CtaComponent.displayName = name;
+
+  return CtaComponent;
+}
+
 export const Button = buttonHoc('Button', ButtonWrapper);
 export const ButtonLink = buttonHoc('ButtonLink', LinkWrapper);
+export const Cta = ctaHoc('Cta', CtaWrapper);
+export const CtaLink = ctaHoc('CtaLink', CtaLinkWrapper);
 
 export default Button;

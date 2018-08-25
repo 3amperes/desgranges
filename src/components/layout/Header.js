@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {
   Box,
   Button,
-  ButtonLink,
+  CtaLink,
   Logotype,
   Grid,
   Cell,
@@ -53,7 +53,7 @@ const Header = ({ isMenuOpened, onToggleMenu, scrollWidth }) => (
         <Grid
           rows={`${SIZES.NAVBAR}px`}
           height="100%"
-          columns={'100px 1fr 100px'}
+          columns={'205px 1fr 205px'}
           gap="0"
         >
           <Cell middle>
@@ -70,8 +70,8 @@ const Header = ({ isMenuOpened, onToggleMenu, scrollWidth }) => (
             </LogoLink>
           </Cell>
           <Cell middle>
-            <Box textAlign="right">
-              <ButtonLink label="contact" to="/contact" />
+            <Box>
+              <CtaLink label="Contactez-moi" to="/contact" />
             </Box>
           </Cell>
         </Grid>

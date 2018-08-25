@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonLink, CenterSection, Heading, Paragraph } from 'components';
+import { CtaLink, CenterSection, Heading, Paragraph } from 'components';
 
 const ContaCta = () => (
   <CenterSection height="400px">
@@ -8,7 +8,7 @@ const ContaCta = () => (
       Une interrogation sur un projet, une question ou tout simplement des
       disponibilités ?
     </Paragraph>
-    <ButtonLink label="Contactez moi" to={'/contact'} />
+    <CtaLink label="Contactez-moi" to={'/contact'} />
   </CenterSection>
 );
 
