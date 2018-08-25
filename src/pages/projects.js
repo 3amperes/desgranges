@@ -11,26 +11,32 @@ import {
 } from 'components';
 
 class Intro extends Component {
-  renderContent = () => (
-    <div>
-      <Heading>Projets</Heading>
-      <Paragraph>
-        Une sélection de projets réalisés sur les 3 dernières années en
-        freelance et en agence.
-      </Paragraph>
-    </div>
+  renderHeading = (props = {}) => <Heading {...props}>Projets</Heading>;
+
+  renderParagraph = (props = {}) => (
+    <Paragraph {...props}>
+      Une sélection de projets réalisés sur les 3 dernières années en freelance
+      et en agence.
+    </Paragraph>
   );
+
   render() {
     return (
       <Container height="350px">
         <Mobile>
           <Cell center middle width={4} left={2}>
-            {this.renderContent()}
+            {this.renderHeading()}
+          </Cell>
+          <Cell center middle width={4} left={2}>
+            {this.renderParagraph()}
           </Cell>
         </Mobile>
         <Default>
           <Cell center middle width={6} left={4}>
-            {this.renderContent()}
+            {this.renderHeading({ mb: 0 })}
+          </Cell>
+          <Cell center middle width={4} left={5}>
+            {this.renderParagraph({ mb: 0 })}
           </Cell>
         </Default>
       </Container>
