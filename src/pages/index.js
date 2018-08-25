@@ -81,9 +81,10 @@ const Intro = () => (
       <ContentWrapper>
         <Container
           height={SIZES.INTRO}
-          rows={'auto auto 50% 100px'}
+          rows={'1fr auto auto 1fr 100px'}
           alignContent="end"
         >
+          <Cell width="12" />
           <Cell width={12} center middle>
             <Heading fontSize={9} mb={0}>
               Création web & print

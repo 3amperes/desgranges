@@ -4,7 +4,7 @@ import { CtaLink, CenterSection, Heading, Paragraph } from 'components';
 const ContaCta = () => (
   <CenterSection height="400px">
     <Heading is="h2">Envie d'en parler ?</Heading>
-    <Paragraph fontWeight="700">
+    <Paragraph>
       Une interrogation sur un projet, une question ou tout simplement des
       disponibilités ?
     </Paragraph>
