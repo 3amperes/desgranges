@@ -17,7 +17,10 @@ const Strong = ({ text }) => (
 );
 
 class AboutPage extends Component {
-  renderTitle = () => <Heading mb={0}>Je suis designer graphique</Heading>;
+  renderTitle = (props = {}) => (
+    <Heading {...props}>Je suis designer graphique</Heading>
+  );
+
   renderContent = () => (
     <div>
       <Paragraph fontWeight="700">
@@ -44,19 +47,20 @@ class AboutPage extends Component {
       </Paragraph>
     </div>
   );
+
   render() {
     return (
       <div>
         <Container height="auto">
           <Mobile>
-            <Cell width={4} left={3}>
+            <Cell center middle width={6}>
               {this.renderTitle()}
             </Cell>
             <Cell width={6}>{this.renderContent()}</Cell>
           </Mobile>
           <Default>
-            <Cell width={8} left={3}>
-              {this.renderTitle()}
+            <Cell center middle width={6} left={4}>
+              {this.renderTitle({ mb: 0 })}
             </Cell>
             <Cell width={4} left={5}>
               {this.renderContent()}
