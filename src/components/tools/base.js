@@ -20,8 +20,13 @@ export const PageHeader = ({ children, title, isBig }) => (
   </Box>
 );
 
-export const Container = ({ children, height = 'auto', ...props }) => (
-  <React.Fragment>
+const ContainerWrapper = styled.div`
+  min-height: ${({ isFullHeight }) => (isFullHeight ? '100vh' : 'auto')};
+  height: ${({ isFullHeight }) => (isFullHeight ? '100vh' : 'auto')};
+`;
+
+export const Container = ({ children, height = '100%', ...props }) => (
+  <ContainerWrapper isFullHeight={height === '100%'}>
     <Mobile>
       <Grid
         columns={GRID.MOBILE.COLUMNS}
@@ -58,10 +63,10 @@ export const Container = ({ children, height = 'auto', ...props }) => (
         {children}
       </Grid>
     </Desktop>
-  </React.Fragment>
+  </ContainerWrapper>
 );
 
-export const CenterSection = ({ children, height = '100vh', ...props }) => (
+export const CenterSection = ({ children, height = 'auto', ...props }) => (
   <Container height={height} {...props}>
     <Mobile>
       <Cell width={6} center>
@@ -77,18 +82,19 @@ export const CenterSection = ({ children, height = '100vh', ...props }) => (
 );
 
 export const Section = ({ children }) => (
-  <Box is="section" py={6} position="relative">
+  <Box is="section" py={4} position="relative">
     {children}
   </Box>
 );
 
 export const DecorationWrapper = styled.div`
   position: absolute;
-  top: 0;
+  top: ${({ top }) => top || '50%'};
+  transform: ${({ top }) => (top ? 'none' : 'translateY(-50%)')};
   left: ${({ left }) => left || 'auto'};
   right: ${({ right }) => right || 'auto'};
-  z-index: 0;
   width: ${({ width }) => width};
+  z-index: 0;
 `;
 
 export const Paragraph = ({ children, mb = 3, ...props }) => (

@@ -33,22 +33,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const VegetationLeftWrapper = styled.div`
-  position: absolute;
-  left: -40px;
-  top: 0;
-  z-index: 0;
-  height: 100%;
-`;
-
-const VegetationRightWrapper = styled.div`
-  position: absolute;
-  right: -40px;
-  top: 0;
-  z-index: 0;
-  height: 100%;
-`;
-
 const Intro = () => (
   <div>
     <Mobile>
@@ -80,24 +64,22 @@ const Intro = () => (
     <Default>
       <ContentWrapper>
         <Container
-          height={SIZES.INTRO}
-          rows={'1fr auto auto 1fr 100px'}
-          alignContent="end"
+          height={'100vh'}
+          rows={'auto auto auto'}
+          alignContent="center"
         >
-          <Cell width="12" />
           <Cell width={12} center middle>
             <Heading fontSize={9} mb={0}>
               Création web & print
             </Heading>
           </Cell>
           <Cell width={4} left={5} center middle>
-            <Paragraph mb={0}>
+            <Paragraph mb={6}>
               Je suis Romain Desgranges, designer graphique spécialisé dans la
               création d’interfaces web et de supports print.
             </Paragraph>
           </Cell>
-          <Cell width="12" />
-          <Cell width={12} center middle>
+          <Cell width={12} center>
             <div>
               <ButtonLink label="Découvrir" to="/about" />
             </div>
@@ -147,8 +129,8 @@ const SectionOne = () => (
       </Container>
     </Mobile>
     <Tablet>
-      <Container>
-        <Cell width={6} left={2}>
+      <Container height="auto" alignContent="center">
+        <Cell width={6} left={2} middle>
           <SectionOneContent />
         </Cell>
         <Cell width={4} left={9} middle>
@@ -157,8 +139,8 @@ const SectionOne = () => (
       </Container>
     </Tablet>
     <Desktop>
-      <Container>
-        <Cell width={3} left={3}>
+      <Container alignContent="center">
+        <Cell width={3} left={3} middle>
           <SectionOneContent />
         </Cell>
         <Cell width={3} left={8} middle>
@@ -203,21 +185,21 @@ const SectionTwo = () => (
       </Box>
     </Mobile>
     <Tablet>
-      <Container>
+      <Container height="auto" alignContent="center">
         <Cell width={4} middle>
           <Cocktail />
         </Cell>
-        <Cell width={6} left={6}>
+        <Cell width={6} left={6} middle>
           <SectionTwoContent />
         </Cell>
       </Container>
     </Tablet>
     <Desktop>
-      <Container>
+      <Container alignContent="center">
         <Cell width={3} left={3} middle>
           <Cocktail />
         </Cell>
-        <Cell width={3} left={8}>
+        <Cell width={3} left={8} middle>
           <SectionTwoContent />
         </Cell>
       </Container>
@@ -256,11 +238,22 @@ const IndexPage = ({ data }) => {
     <div>
       <Intro />
       <Section>
-        <RightDecoration width="35%" />
+        <Mobile>
+          <RightDecoration top="-50px" width="55%" />
+        </Mobile>
+        <Default>
+          <RightDecoration width="35%" />
+        </Default>
         <SectionOne />
       </Section>
       <Section>
-        <LeftDecoration width="35%" />
+        <Mobile>
+          <LeftDecoration top="100px" width="55%" />
+        </Mobile>
+        <Default>
+          <LeftDecoration width="35%" />
+        </Default>
+
         <SectionTwo />
       </Section>
       <Section>

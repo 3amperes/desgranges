@@ -2,7 +2,7 @@ import React from 'react';
 import { CtaLink, CenterSection, Heading, Paragraph } from 'components';
 
 const ContaCta = () => (
-  <CenterSection height="400px">
+  <CenterSection height="300px">
     <Heading is="h2">Envie d'en parler ?</Heading>
     <Paragraph>
       Une interrogation sur un projet, une question ou tout simplement des
