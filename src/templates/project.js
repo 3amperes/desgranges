@@ -102,7 +102,7 @@ const ProjectTemplate = ({ data }) => {
         </Box>
       </Mobile>
       <Default>
-        <Container rows="150px auto" height={SIZES.INTRO}>
+        <Container rows="150px auto">
           <Cell width={8} left={3} center>
             {!!tag && <SurTitle label={tag.title} />}
             <Heading>{title}</Heading>

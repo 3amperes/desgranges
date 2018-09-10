@@ -1,7 +1,7 @@
 import React from 'react';
 import GLink, { navigateTo } from 'gatsby-link';
 import { TimelineLite } from 'gsap';
-import { Box } from 'components';
+import { Box, Logotype } from 'components';
 import { absolute } from 'utils/mixins';
 import withRouter from 'react-router/withRouter';
 
@@ -38,6 +38,9 @@ const AnimationComponentWrapper = Box.extend`
   position: fixed;
   z-index: 999;
   transform: translateX(-100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 class _AnimatedScreen extends React.Component {
@@ -62,8 +65,13 @@ class _AnimatedScreen extends React.Component {
     this.animation = new TimelineLite();
     this.animation
       .set(wrapper, { x: '-100%' })
-      .to(wrapper, tweenDuration, { x: '0%' })
-      .to(wrapper, tweenDuration, { x: '-100%' }, `+=${tweenDuration}`)
+      .to(wrapper, tweenDuration, { ease: Power2.easeOut, x: '0%' })
+      .to(
+        wrapper,
+        tweenDuration,
+        { ease: Power2.easeOut, x: '-100%' },
+        `+=${tweenDuration}`
+      )
       .set(wrapper, { x: '-100%' });
     this.animation.play();
 
@@ -77,7 +85,9 @@ class _AnimatedScreen extends React.Component {
     const { children } = this.props;
     return (
       <AnimatedScreenContext.Provider value={this.navigateTo}>
-        <AnimationComponentWrapper innerRef={this.wrapper} bg={'sea'} />
+        <AnimationComponentWrapper innerRef={this.wrapper} bg={'sea'}>
+          <Logotype color="white" />
+        </AnimationComponentWrapper>
         {children}
       </AnimatedScreenContext.Provider>
     );
