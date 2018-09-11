@@ -82,7 +82,7 @@ export const CenterSection = ({ children, height = 'auto', ...props }) => (
 );
 
 export const Section = ({ children }) => (
-  <Box is="section" py={4} position="relative">
+  <Box is="section" py={5} position="relative">
     {children}
   </Box>
 );

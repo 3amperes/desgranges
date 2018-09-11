@@ -72,7 +72,7 @@ export const query = graphql`
           }
           highlight
           thumbnail {
-            sizes(maxWidth: 400, maxHeight: 400) {
+            sizes(maxWidth: 850, maxHeight: 850) {
               # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
               ...GatsbyContentfulSizes
             }

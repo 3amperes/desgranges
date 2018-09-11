@@ -1,5 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import Img from 'gatsby-image';
+import ReactPlayer from 'react-player';
 import {
   Container,
   SurTitle,
@@ -7,6 +9,7 @@ import {
   ContaCta,
   Cell,
   Box,
+  ButtonLink,
   Heading,
   Mobile,
   Default,
@@ -14,13 +17,11 @@ import {
   Desktop,
 } from 'components';
 
-import { SIZES } from 'utils/constants';
-
 const ContentcontainerWrapper = Box.extend`
   img {
     display: inline-block;
     max-width: 100%;
-    margin: 50px auto;
+    margin: auto;
   }
 `;
 
@@ -30,38 +31,45 @@ const SubTitle = ({ children }) => (
   </Heading>
 );
 
-const ContentContainer = ({ html }) => (
-  <ContentcontainerWrapper>
-    <Container height="auto">
-      <Mobile>
-        <Cell
-          width={6}
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
-      </Mobile>
-      <Tablet>
-        <Cell
-          width={10}
-          left={2}
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
-      </Tablet>
-      <Desktop>
-        <Cell
-          width={8}
-          left={3}
-          dangerouslySetInnerHTML={{
-            __html: html,
-          }}
-        />
-      </Desktop>
-    </Container>
-  </ContentcontainerWrapper>
-);
+const ContentContainer = ({ html, children }) => {
+  const RenderCell = ({ ...props }) =>
+    html ? (
+      <Cell
+        {...props}
+        dangerouslySetInnerHTML={{
+          __html: html,
+        }}
+      />
+    ) : (
+      <Cell {...props}>{children}</Cell>
+    );
+  return (
+    <ContentcontainerWrapper>
+      <Container height="auto">
+        <Mobile>
+          <RenderCell width={6} />
+        </Mobile>
+        <Tablet>
+          <RenderCell width={10} left={2} />
+        </Tablet>
+        <Desktop>
+          <RenderCell width={8} left={3} />
+        </Desktop>
+      </Container>
+    </ContentcontainerWrapper>
+  );
+};
+
+const PlayerWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%;
+
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+`;
 
 const ProjectTemplate = ({ data }) => {
   const {
@@ -71,6 +79,7 @@ const ProjectTemplate = ({ data }) => {
     object,
     answer,
     main,
+    embed,
     footer,
   } = data.contentfulProject;
 
@@ -94,15 +103,13 @@ const ProjectTemplate = ({ data }) => {
           <Heading>{title}</Heading>
         </Box>
         <Img sizes={thumbnail.sizes} />
-        <Box py={6}>
-          <Container height="auto">
-            <Cell width={6}>{renderObject()}</Cell>
-            <Cell width={6}>{renderAswer()}</Cell>
-          </Container>
-        </Box>
+        <Container height="auto">
+          <Cell width={6}>{renderObject()}</Cell>
+          <Cell width={6}>{renderAswer()}</Cell>
+        </Container>
       </Mobile>
       <Default>
-        <Container rows="150px auto">
+        <Container height="auto" rows="auto 1fr">
           <Cell width={8} left={3} center>
             {!!tag && <SurTitle label={tag.title} />}
             <Heading>{title}</Heading>
@@ -111,15 +118,30 @@ const ProjectTemplate = ({ data }) => {
             <Img sizes={thumbnail.sizes} />
           </Cell>
         </Container>
-        <Container height="auto">
-          <Cell width={3} left={4}>
-            {renderObject()}
-          </Cell>
-          <Cell width={3}>{renderAswer()}</Cell>
-        </Container>
+        <Box py={4}>
+          <Container height="auto">
+            <Cell width={3} left={4}>
+              {renderObject()}
+            </Cell>
+            <Cell width={3}>{renderAswer()}</Cell>
+          </Container>
+        </Box>
       </Default>
       {!!main && <ContentContainer html={main.childMarkdownRemark.html} />}
+      {!!embed && (
+        <PlayerWrapper>
+          <ReactPlayer
+            className="react-player"
+            url={embed}
+            width="100%"
+            height="100%"
+          />
+        </PlayerWrapper>
+      )}
       {!!footer && <ContentContainer html={footer.childMarkdownRemark.html} />}
+      <Box textAlign="center" py={5}>
+        <ButtonLink label="Retour à la liste des projets" to="/projects" />
+      </Box>
       <ContaCta />
     </div>
   );
@@ -152,6 +174,7 @@ export const query = graphql`
           html
         }
       }
+      embed
       footer {
         childMarkdownRemark {
           html

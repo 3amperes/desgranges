@@ -64,7 +64,7 @@ const Intro = () => (
     <Default>
       <ContentWrapper>
         <Container
-          height={'100vh'}
+          height={SIZES.INTRO}
           rows={'auto auto auto'}
           alignContent="center"
         >
@@ -85,11 +85,11 @@ const Intro = () => (
             </div>
           </Cell>
         </Container>
-        <DecorationWrapper width="30%" left="-10%">
-          <VegetationLeft width="100%" />
+        <DecorationWrapper width="28%" left="-11%">
+          <VegetationLeft width="100%" maxHeight="100%" />
         </DecorationWrapper>
-        <DecorationWrapper width="30%" right="-10%">
-          <VegetationRight width="100%" />
+        <DecorationWrapper width="28%" right="-11%">
+          <VegetationRight width="100%" maxHeight="100%" />
         </DecorationWrapper>
       </ContentWrapper>
     </Default>
@@ -287,7 +287,7 @@ export const query = graphql`
           }
           highlight
           thumbnail {
-            sizes(maxWidth: 400, maxHeight: 400) {
+            sizes(maxWidth: 850, maxHeight: 850) {
               # Choose either the fragment including a small base64ed image, a traced placeholder SVG, or one without.
               ...GatsbyContentfulSizes
             }
