@@ -89,3 +89,12 @@ export const resetButton = () => css`
 
   -webkit-appearance: none;
 `;
+
+export const fullWidth = () => css`
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+`;

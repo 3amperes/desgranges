@@ -17,11 +17,19 @@ import {
   Desktop,
 } from 'components';
 
+import { fullWidth } from 'utils/mixins';
+
 const ContentcontainerWrapper = Box.extend`
   img {
     display: inline-block;
     max-width: 100%;
     margin: auto;
+    margin-bottom: 36px;
+
+    &.fullwidth {
+      max-width: none;
+      ${fullWidth};
+    }
   }
 `;
 
