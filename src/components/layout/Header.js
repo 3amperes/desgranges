@@ -30,20 +30,34 @@ const LogoLink = styled(AnimatedLink)`
   margin: auto;
 `;
 
-const MenuButton = props => (
-  <svg width={46} height={46} {...props}>
-    <circle fill="#F99E78" cx={23} cy={23} r={23} />
-    <path
-      fill="#111"
-      d="M12.432 14.997h19.95v3h-19.95zM12.432 21.432h19.95v3h-19.95zM12.432 27.591h19.95v3h-19.95z"
-    />
-  </svg>
+const MenuButtonWrapper = styled.div`
+  position: absolute;
+  left: 15px;
+`;
+
+const MenuButton = ({ isMenuOpened, ...otherProps }) => (
+  <MenuButtonWrapper {...otherProps}>
+    <svg width={46} height={46}>
+      <circle fill="#F99E78" cx={23} cy={23} r={23} />
+      {isMenuOpened ? (
+        <g fill="#111">
+          <path d="M16.914 14.68l14.107 14.107-2.121 2.121-14.107-14.107z" />
+          <path d="M14.793 28.787L28.9 14.68 31.02 16.8 16.914 30.908z" />
+        </g>
+      ) : (
+        <path
+          fill="#111"
+          d="M12.432 14.997h19.95v3h-19.95zM12.432 21.432h19.95v3h-19.95zM12.432 27.591h19.95v3h-19.95z"
+        />
+      )}
+    </svg>
+  </MenuButtonWrapper>
 );
 
 const Header = ({ isMenuOpened, onToggleMenu, scrollWidth }) => (
   <HeaderInner scrollWidth={scrollWidth}>
     <Mobile>
-      <MenuButton onClick={onToggleMenu} />
+      <MenuButton isMenuOpened={isMenuOpened} onClick={onToggleMenu} />
       <LogoLink to="/">
         <Logotype color="gray.dark" />
       </LogoLink>

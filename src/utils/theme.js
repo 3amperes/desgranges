@@ -12,7 +12,7 @@ const colors = {
   pine: '#2c5a40',
 };
 // Breakpoints
-const breakpoints = ['40em', '52em', '64em'];
+const breakpoints = [768, 1200];
 // @media screen and (min-width: 40em)
 // @media screen and (min-width: 52em)
 // @media screen and (min-width: 64em)

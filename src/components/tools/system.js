@@ -40,7 +40,7 @@ export const Heading = system(
     fontWeight: '700',
     lineHeight: 0,
     letterSpacing: 0,
-    fontSize: 8,
+    fontSize: [7, 8],
     mt: 0,
     mb: 4,
   },

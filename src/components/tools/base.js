@@ -6,9 +6,9 @@ import { Box, Text, Heading, Grid, Cell } from 'components';
 import { GRID } from 'utils/constants';
 import { resetLink } from 'utils/mixins';
 
-export const Desktop = props => <Responsive {...props} minWidth={992} />;
+export const Desktop = props => <Responsive {...props} minWidth={1200} />;
 export const Tablet = props => (
-  <Responsive {...props} minWidth={768} maxWidth={991} />
+  <Responsive {...props} minWidth={768} maxWidth={1199} />
 );
 export const Mobile = props => <Responsive {...props} maxWidth={767} />;
 export const Default = props => <Responsive {...props} minWidth={768} />;
@@ -21,12 +21,12 @@ export const PageHeader = ({ children, title, isBig }) => (
 );
 
 const ContainerWrapper = styled.div`
-  min-height: ${({ isFullHeight }) => (isFullHeight ? '100vh' : 'auto')};
-  height: ${({ isFullHeight }) => (isFullHeight ? '100vh' : 'auto')};
+  min-height: ${({ height }) => height};
+  height: ${({ height }) => height};
 `;
 
-export const Container = ({ children, height = '100%', ...props }) => (
-  <ContainerWrapper isFullHeight={height === '100%'}>
+export const Container = ({ children, height = 'auto', ...props }) => (
+  <ContainerWrapper height={height}>
     <Mobile>
       <Grid
         columns={GRID.MOBILE.COLUMNS}
@@ -66,6 +66,27 @@ export const Container = ({ children, height = '100%', ...props }) => (
   </ContainerWrapper>
 );
 
+export const DecoratedContainer = ({ children, height = 'auto', ...props }) => {
+  const renderChildren = <Box py={4}>{children}</Box>;
+  return (
+    <Container height={height} {...props}>
+      <Mobile>
+        <Cell width={6}>{renderChildren}</Cell>
+      </Mobile>
+      <Tablet>
+        <Cell width={8} left={4}>
+          {renderChildren}
+        </Cell>
+      </Tablet>
+      <Desktop>
+        <Cell width={4} left={5}>
+          {renderChildren}
+        </Cell>
+      </Desktop>
+    </Container>
+  );
+};
+
 export const CenterSection = ({ children, height = 'auto', ...props }) => (
   <Container height={height} {...props}>
     <Mobile>
@@ -82,7 +103,7 @@ export const CenterSection = ({ children, height = 'auto', ...props }) => (
 );
 
 export const Section = ({ children }) => (
-  <Box is="section" py={5} position="relative">
+  <Box is="section" py={[3, 4, 5]} position="relative">
     {children}
   </Box>
 );

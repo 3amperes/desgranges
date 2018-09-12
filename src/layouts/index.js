@@ -62,7 +62,7 @@ class Layout extends React.Component {
               isMenuOpened={navOn}
               scrollWidth={scrollWidth}
             />
-            <ContentWrapper pb={6} scrollWidth={scrollWidth}>
+            <ContentWrapper scrollWidth={scrollWidth}>
               {children()}
             </ContentWrapper>
             <Footer />

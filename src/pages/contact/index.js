@@ -14,7 +14,10 @@ import {
   Tablet,
   Desktop,
   Default,
+  DecoratedContainer,
 } from 'components';
+import { DecoratedSection } from 'components/tools';
+import { SIZES } from 'utils/constants';
 
 const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -196,22 +199,12 @@ class ContactPage extends React.Component {
 
   render() {
     return (
-      <Container height="auto" rows="300px auto">
-        <Mobile>
-          <Cell width={6} middle>
-            {this.renderHeader()}
-          </Cell>
-          <Cell width={6}>{this.renderForm()}</Cell>
-        </Mobile>
-        <Default>
-          <Cell width={4} left={5} middle>
-            {this.renderHeader()}
-          </Cell>
-          <Cell width={4} left={5}>
-            {this.renderForm()}
-          </Cell>
-        </Default>
-      </Container>
+      <DecoratedContainer>
+        <div>
+          {this.renderHeader()}
+          {this.renderForm()}
+        </div>
+      </DecoratedContainer>
     );
   }
 }

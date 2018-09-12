@@ -9,8 +9,8 @@ import { ZINDEXBASE } from 'utils/constants';
 
 const NavWrapper = styled.nav`
   position: fixed;
-  width: 100vw;
   height: 100vh;
+  width: 100vw;
   top: 0;
   left: 0;
   ${color}
@@ -148,12 +148,7 @@ class Navigation extends Component {
         {state => (
           <div ref={el => (this.wrapper = el)} style={{ opacity: 1 }}>
             <NavWrapper color="black" bg="salmon" scrollWidth={scrollWidth}>
-              <Container
-                height="100%"
-                flow="column"
-                rows="repeat(5, 64px)"
-                alignContent="center"
-              >
+              <Container height="100%" rows="repeat(5, 64px)">
                 {navItems.map(item => (
                   <NavItem
                     innerRef={el => (this[item.ref] = el)}

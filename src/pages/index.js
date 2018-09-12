@@ -33,68 +33,72 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Intro = () => (
-  <div>
-    <Mobile>
-      <ContentWrapper>
-        <Container
-          height={SIZES.INTRO}
-          rows={'auto auto 80px'}
-          alignContent="center"
-        >
-          <Cell width={6} center middle>
-            <Heading fontSize={9} mb={0}>
-              Création web <br /> & print
-            </Heading>
-          </Cell>
-          <Cell width={6} center middle>
-            <Paragraph mb={0}>
-              Je suis Romain Desgranges, designer graphique spécialisé dans la
-              création d’interfaces web et de supports print.
-            </Paragraph>
-          </Cell>
-          <Cell width={6} center top>
-            <div>
-              <ButtonLink label="Découvrir" to="/about" />
-            </div>
-          </Cell>
-        </Container>
-      </ContentWrapper>
-    </Mobile>
-    <Default>
-      <ContentWrapper>
-        <Container
-          height={SIZES.INTRO}
-          rows={'auto auto auto'}
-          alignContent="center"
-        >
-          <Cell width={12} center middle>
-            <Heading fontSize={9} mb={0}>
-              Création web & print
-            </Heading>
-          </Cell>
-          <Cell width={4} left={5} center middle>
-            <Paragraph mb={6}>
-              Je suis Romain Desgranges, designer graphique spécialisé dans la
-              création d’interfaces web et de supports print.
-            </Paragraph>
-          </Cell>
-          <Cell width={12} center>
-            <div>
-              <ButtonLink label="Découvrir" to="/about" />
-            </div>
-          </Cell>
-        </Container>
-        <DecorationWrapper width="28%" left="-11%">
-          <VegetationLeft width="100%" maxHeight="100%" />
-        </DecorationWrapper>
-        <DecorationWrapper width="28%" right="-11%">
-          <VegetationRight width="100%" maxHeight="100%" />
-        </DecorationWrapper>
-      </ContentWrapper>
-    </Default>
-  </div>
-);
+const Intro = () => {
+  const renderTitle = () => (
+    <Heading fontSize={[8, 9]} mb={0}>
+      Création web & print
+    </Heading>
+  );
+  const renderParagraph = () => (
+    <Paragraph mb={[0, 6]}>
+      Je suis Romain Desgranges, designer graphique spécialisé dans la création
+      d’interfaces web et de supports print.
+    </Paragraph>
+  );
+  const renderButton = () => (
+    <div>
+      <ButtonLink label="Découvrir" to="/about" />
+    </div>
+  );
+  return (
+    <div>
+      <Mobile>
+        <ContentWrapper>
+          <Container
+            height={SIZES.INTRO}
+            rows={'auto auto 80px'}
+            alignContent="center"
+          >
+            <Cell width={6} center middle>
+              {renderTitle()}
+            </Cell>
+            <Cell width={6} center middle>
+              {renderParagraph()}
+            </Cell>
+            <Cell width={6} center top>
+              {renderButton()}
+            </Cell>
+          </Container>
+        </ContentWrapper>
+      </Mobile>
+      <Default>
+        <ContentWrapper>
+          <Container
+            height={SIZES.INTRO}
+            rows={'auto auto auto'}
+            alignContent="center"
+          >
+            <Cell width={12} center middle>
+              {renderTitle()}
+            </Cell>
+            <Cell width={4} left={5} center middle>
+              {renderParagraph()}
+            </Cell>
+            <Cell width={12} center>
+              {renderButton()}
+            </Cell>
+          </Container>
+          <DecorationWrapper width="28%" left="-11%">
+            <VegetationLeft width="100%" maxHeight="100%" />
+          </DecorationWrapper>
+          <DecorationWrapper width="28%" right="-11%">
+            <VegetationRight width="100%" maxHeight="100%" />
+          </DecorationWrapper>
+        </ContentWrapper>
+      </Default>
+    </div>
+  );
+};
 
 const SectionOneContent = () => (
   <div>
