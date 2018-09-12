@@ -137,14 +137,16 @@ const ProjectTemplate = ({ data }) => {
       </Default>
       {!!main && <ContentContainer html={main.childMarkdownRemark.html} />}
       {!!embed && (
-        <PlayerWrapper>
-          <ReactPlayer
-            className="react-player"
-            url={embed}
-            width="100%"
-            height="100%"
-          />
-        </PlayerWrapper>
+        <ContentContainer>
+          <PlayerWrapper>
+            <ReactPlayer
+              className="react-player"
+              url={embed}
+              width="100%"
+              height="100%"
+            />
+          </PlayerWrapper>
+        </ContentContainer>
       )}
       {!!footer && <ContentContainer html={footer.childMarkdownRemark.html} />}
       <Box textAlign="center" py={5}>
