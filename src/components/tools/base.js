@@ -74,7 +74,7 @@ export const DecoratedContainer = ({ children, height = 'auto', ...props }) => {
         <Cell width={6}>{renderChildren}</Cell>
       </Mobile>
       <Tablet>
-        <Cell width={8} left={4}>
+        <Cell width={8} left={3}>
           {renderChildren}
         </Cell>
       </Tablet>
@@ -87,23 +87,8 @@ export const DecoratedContainer = ({ children, height = 'auto', ...props }) => {
   );
 };
 
-export const CenterSection = ({ children, height = 'auto', ...props }) => (
-  <Container height={height} {...props}>
-    <Mobile>
-      <Cell width={6} center>
-        {children}
-      </Cell>
-    </Mobile>
-    <Default>
-      <Cell width={12} center>
-        {children}
-      </Cell>
-    </Default>
-  </Container>
-);
-
 export const Section = ({ children }) => (
-  <Box is="section" py={[3, 4, 5]} position="relative">
+  <Box is="section" py={[4, 6, 7]} position="relative">
     {children}
   </Box>
 );

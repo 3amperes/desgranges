@@ -174,7 +174,7 @@ const SectionTwoContent = () => (
 const SectionTwo = () => (
   <React.Fragment>
     <Mobile>
-      <Box py={6}>
+      <Box py={[6, 8]}>
         <Container
           height="auto"
           rows={'250px minmax(min-content, max-content)'}
@@ -243,7 +243,7 @@ const IndexPage = ({ data }) => {
       <Intro />
       <Section>
         <Mobile>
-          <RightDecoration top="-50px" width="55%" />
+          <RightDecoration top="0" width="60%" />
         </Mobile>
         <Default>
           <RightDecoration width="35%" />
@@ -252,7 +252,7 @@ const IndexPage = ({ data }) => {
       </Section>
       <Section>
         <Mobile>
-          <LeftDecoration top="100px" width="55%" />
+          <LeftDecoration top="80px" width="60%" />
         </Mobile>
         <Default>
           <LeftDecoration width="35%" />

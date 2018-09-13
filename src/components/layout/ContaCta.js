@@ -1,15 +1,25 @@
 import React from 'react';
-import { CtaLink, CenterSection, Heading, Paragraph } from 'components';
+import {
+  Box,
+  CtaLink,
+  DecoratedContainer,
+  Heading,
+  Paragraph,
+} from 'components';
 
 const ContaCta = () => (
-  <CenterSection height="300px">
-    <Heading is="h2">Envie d'en parler ?</Heading>
-    <Paragraph>
-      Une interrogation sur un projet, une question ou tout simplement des
-      disponibilités ?
-    </Paragraph>
-    <CtaLink label="Contactez-moi" to={'/contact'} />
-  </CenterSection>
+  <Box pb={[4, 6, 7]}>
+    <DecoratedContainer>
+      <Box textAlign="center">
+        <Heading is="h2">Envie d'en parler ?</Heading>
+        <Paragraph>
+          Une interrogation sur un projet, une question ou tout simplement des
+          disponibilités ?
+        </Paragraph>
+        <CtaLink label="Contactez-moi" to={'/contact'} />
+      </Box>
+    </DecoratedContainer>
+  </Box>
 );
 
 export default ContaCta;
