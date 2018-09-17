@@ -1,1 +1,2 @@
-export * from './styled-system';
+export * from './system';
+export * from './base';

@@ -1,10 +1,25 @@
-import React from 'react'
+import React from 'react';
+import {
+  Box,
+  Heading,
+  SurTitle,
+  ButtonLink,
+  Container,
+  Cell,
+} from 'components';
 
 const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-)
+  <Container alignContent="top">
+    <Cell center middle width={12}>
+      <SurTitle label="Erreur 404" />
+      <Heading>Perdu ?</Heading>
+    </Cell>
+    <Cell center middle width={12}>
+      <Box mt={5}>
+        <ButtonLink to="/" label="Retour à l'accueil" />
+      </Box>
+    </Cell>
+  </Container>
+);
 
-export default NotFoundPage
+export default NotFoundPage;
