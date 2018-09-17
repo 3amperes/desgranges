@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Logotype from '../Logotype';
-import { Container, Cell, Box, Text } from 'components';
-import { resetLink, transition } from 'utils/mixins';
+import { Box, Text } from 'components';
+import { resetLink, resetList, transition, gridContainer } from 'utils/mixins';
 import { themeGet } from 'styled-system';
-import { Mobile, Default } from '../tools/base';
 
 const Link = styled.a`
   ${resetLink};
@@ -21,64 +20,77 @@ const Link = styled.a`
   }
 `;
 
-const Footer = () => {
-  const linkedin = (
-    <div>
-      <Link isUppercase href="http://www.linkedin.com">
-        Linkedin
+const Wrapper = styled(Box)`
+  ${gridContainer('420px')};
+
+  > * {
+    grid-column: 1 / -1;
+  }
+  .footer--address {
+    font-style: normal;
+
+    &--phone {
+      font-weight: 600;
+    }
+  }
+  .footer--socials {
+    ${resetList};
+    text-align: center;
+    display: flex;
+
+    li + li {
+      margin-left: ${themeGet('space.5')}px;
+    }
+  }
+`;
+
+const Footer = () => (
+  <Wrapper bg="sea" color="black">
+    <Logotype className="footer--logo" color="gray.dark" />
+    <Text
+      className="footer--address"
+      is="address"
+      fontSize={1}
+      lineHeight={1}
+      textAlign="center"
+    >
+      Romain Desgranges <br />
+      <Link href="mailto:romain.desgranges@gmail.com">
+        romain.desgranges@gmail.com
       </Link>
-    </div>
-  );
-  const twitter = (
-    <div>
-      <Link isUppercase href="http://www.twitter.com">
-        Twitter
-      </Link>
-    </div>
-  );
-  const instagram = (
-    <div>
-      <Link isUppercase href="http://www.instagram.com">
-        instagram
-      </Link>
-    </div>
-  );
-  return (
-    <Box bg="sea" color="white">
-      <Container
-        height="400px"
-        alignContent="center"
-        columns={'repeat(3, auto)'}
-        gap="50px"
-      >
-        <Cell width={3} center>
-          <Logotype color="gray.dark" />
-        </Cell>
-        <Cell width={3} center>
-          <Text fontSize={1} lineHeight={1}>
-            Romain Desgranges <br />
-            <Link href="mailto:romain.desgranges@gmail.com">
-              romain.desgranges@gmail.com
-            </Link>
-            <br />
-            06 59 24 73 17
-          </Text>
-        </Cell>
-        <Mobile>
-          <Cell width={3} center>
-            {linkedin}
-            {twitter}
-            {instagram}
-          </Cell>
-        </Mobile>
-        <Default>
-          <Cell center>{linkedin}</Cell>
-          <Cell center>{twitter}</Cell>
-          <Cell center>{instagram}</Cell>
-        </Default>
-      </Container>
-    </Box>
-  );
-};
+      <br />
+      <span className="footer--address--phone">06 59 24 73 17</span>
+    </Text>
+    <ul className="footer--socials">
+      <li className="footer--social">
+        <Link
+          className="footer--social linkedin"
+          isUppercase
+          href="http://www.linkedin.com"
+        >
+          Linkedin
+        </Link>
+      </li>
+      <li className="footer--social">
+        <Link
+          className="footer--social"
+          isUppercase
+          href="http://www.twitter.com"
+        >
+          Twitter
+        </Link>
+      </li>
+      <li className="footer--social">
+        <Link
+          className="footer--social"
+          isUppercase
+          href="http://www.instagram.com"
+        >
+          instagram
+        </Link>
+      </li>
+    </ul>
+  </Wrapper>
+);
 
 export default Footer;

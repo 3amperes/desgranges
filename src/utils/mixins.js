@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import fonts from '../fonts';
-import { TRANSITION } from 'utils/constants';
+import { TRANSITION, GRID, BREAKPOINT } from 'utils/constants';
 
 export const getFontFace = (
   name,
@@ -90,6 +90,17 @@ export const resetButton = () => css`
   -webkit-appearance: none;
 `;
 
+// Iterate through the sizes and create a media template
+export const media = Object.keys(BREAKPOINT).reduce((acc, label) => {
+  acc[label] = (...args) => css`
+    @media screen and (min-width: ${BREAKPOINT[label] / 16}em) {
+      ${css(...args)};
+    }
+  `;
+
+  return acc;
+}, {});
+
 export const fullWidth = () => css`
   width: 100vw;
   position: relative;
@@ -97,4 +108,24 @@ export const fullWidth = () => css`
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+`;
+
+export const gridContainer = (minHeigth = 'auto') => css`
+  min-height: ${minHeigth};
+  display: grid;
+  grid-gap: ${GRID.MOBILE.GAP};
+  grid-template-columns: ${GRID.MOBILE.COLUMNS};
+  ${media.tablet`
+    grid-gap: ${GRID.TABLET.GAP};
+    grid-template-columns: ${GRID.TABLET.COLUMNS};
+  `};
+  ${media.tablet`
+    grid-gap: ${GRID.DESKTOP.GAP};
+    grid-template-columns: ${GRID.DESKTOP.COLUMNS};
+  `};
+
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
 `;

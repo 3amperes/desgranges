@@ -56,7 +56,7 @@ class Layout extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <AnimatedScreen>
-          <MainWrapper overflowHidden={navOn} p={0} pt="120px" bg="gray.light">
+          <MainWrapper overflowHidden={navOn} p={0} bg="gray.light">
             <Header
               onToggleMenu={this.onToggleNav}
               isMenuOpened={navOn}

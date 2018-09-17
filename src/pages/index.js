@@ -4,7 +4,6 @@ import {
   ButtonLink,
   Paragraph,
   Container,
-  Section,
   SurTitle,
   Box,
   Cell,
@@ -22,193 +21,154 @@ import {
   DecorationWrapper,
 } from 'components';
 
+import { gridContainer, media } from 'utils/mixins';
 import { SIZES } from 'utils/constants';
 
-const ContentWrapper = styled.div`
-  position: relative;
-  overflow: hidden;
+const HeroContainer = styled(Box)`
+  ${gridContainer(SIZES.INTRO)};
 
-  div:first-child {
-    z-index: 10;
+  .hero--title {
+    grid-column: 1 / -1;
+    ${media.tablet`grid-column: 3 / -3;`};
+  }
+  .hero--paragraph {
+    grid-column: 1 / -1;
+    ${media.tablet`grid-column: 5 / -5;`};
+  }
+  .hero--button {
+    grid-column: 1 / -1;
   }
 `;
 
-const Intro = () => {
-  const renderTitle = () => (
-    <Heading fontSize={[8, 9]} mb={0}>
+const Hero = () => (
+  <HeroContainer>
+    <Heading
+      className="hero--title"
+      textAlign="center"
+      fontSize={[8, 9]}
+      mb={0}
+    >
       Création web & print
     </Heading>
-  );
-  const renderParagraph = () => (
-    <Paragraph mb={[0, 6]}>
+    <Paragraph className="hero--paragraph" textAlign="center" mb={[0, 6]}>
       Je suis Romain Desgranges, designer graphique spécialisé dans la création
       d’interfaces web et de supports print.
     </Paragraph>
-  );
-  const renderButton = () => (
-    <div>
-      <ButtonLink label="Découvrir" to="/about" />
-    </div>
-  );
-  return (
-    <div>
-      <Mobile>
-        <ContentWrapper>
-          <Container
-            height={SIZES.INTRO}
-            rows={'auto auto 80px'}
-            alignContent="center"
-          >
-            <Cell width={6} center middle>
-              {renderTitle()}
-            </Cell>
-            <Cell width={6} center middle>
-              {renderParagraph()}
-            </Cell>
-            <Cell width={6} center top>
-              {renderButton()}
-            </Cell>
-          </Container>
-        </ContentWrapper>
-      </Mobile>
-      <Default>
-        <ContentWrapper>
-          <Container
-            height={SIZES.INTRO}
-            rows={'auto auto auto'}
-            alignContent="center"
-          >
-            <Cell width={12} center middle>
-              {renderTitle()}
-            </Cell>
-            <Cell width={4} left={5} center middle>
-              {renderParagraph()}
-            </Cell>
-            <Cell width={12} center>
-              {renderButton()}
-            </Cell>
-          </Container>
-          <DecorationWrapper width="28%" left="-11%">
-            <VegetationLeft width="100%" maxHeight="100%" />
-          </DecorationWrapper>
-          <DecorationWrapper width="28%" right="-11%">
-            <VegetationRight width="100%" maxHeight="100%" />
-          </DecorationWrapper>
-        </ContentWrapper>
-      </Default>
-    </div>
-  );
-};
-
-const SectionOneContent = () => (
-  <div>
-    <Heading is="h2">
-      Voir <br /> et être vu
-    </Heading>
-    <Paragraph>
-      <strong>
-        Vous êtes une entreprise, une association ou une administration,
-      </strong>{' '}
-      et vous souhaitez asseoir ou accroître votre visibilité grâce à vos
-      supports de communication ?
-    </Paragraph>
-    <Paragraph>
-      <strong>Vous êtes une agence,</strong> et vous avez besoin de visibilité
-      sur vos projets en vous appuyant sur un freelance disponible rapidement ?
-    </Paragraph>
-    <ButtonLink label="je suis à votre disposition" to="/contact" />
-  </div>
+    <ButtonLink className="hero--button" label="Découvrir" to="/about" />
+  </HeroContainer>
 );
+
+const SectionOneWrapper = styled(Box)`
+  ${gridContainer('568px')};
+  grid-template-rows: 350px repeat(3, auto);
+  ${media.tablet`grid-template-rows: repeat(3, auto);`};
+  > * {
+    grid-column: 1 / -1;
+  }
+  .section {
+    &--title {
+      grid-row: 2 / 3;
+      ${media.tablet`
+        grid-column: 1 / 8;
+        grid-row: 1 / 2;
+      `};
+    }
+    &--content {
+      grid-row: 3 / 4;
+      ${media.tablet`grid-column: 2 / 7; grid-row: 2 / 3;`};
+      ${media.desktop`grid-column: 3 / 6; `};
+    }
+    &--btn {
+      grid-row: 4 / 5;
+      ${media.tablet`grid-column: 1 / 8; grid-row: 3 / 4`};
+    }
+    &-illustration {
+      grid-row: 1 / 2;
+      ${media.tablet`
+        grid-column: 7 / -3;
+        grid-row: 1 / 4;
+      `};
+    }
+  }
+`;
+const SectionTwoWrapper = styled(Box)`
+  ${gridContainer('568px')};
+  grid-template-rows: 350px repeat(3, auto);
+  ${media.tablet`grid-template-rows: repeat(3, auto);`};
+  > * {
+    grid-column: 1 / -1;
+  }
+
+  .section {
+    &--title {
+      grid-row: 2 / 3;
+      ${media.tablet`
+        grid-column: -8 / -1;
+        grid-row: 1 / 2;
+      `};
+    }
+    &--content {
+      grid-row: 3 / 4;
+      ${media.tablet`grid-column: -7 / -2; grid-row: 2 / 3;`};
+      ${media.desktop`grid-column: -6 / -3; `};
+    }
+    &--btn {
+      grid-row: 4 / 5;
+      ${media.tablet`grid-column: -8 / -1; grid-row: 3 / 4`};
+    }
+    &-illustration {
+      grid-row: 1 / 2;
+      ${media.tablet`
+        grid-column: 3 / 7;
+        grid-row: 1 / 4;
+      `};
+    }
+  }
+`;
 
 const SectionOne = () => (
-  <React.Fragment>
-    <Mobile>
-      <Container height="auto" rows={'250px minmax(min-content, max-content)'}>
-        <Cell width={4} left={2} middle>
-          <Lunettes />
-        </Cell>
-        <Cell width={6} center>
-          <SectionOneContent />
-        </Cell>
-      </Container>
-    </Mobile>
-    <Tablet>
-      <Container height="auto" alignContent="center">
-        <Cell width={6} left={2} middle>
-          <SectionOneContent />
-        </Cell>
-        <Cell width={4} left={9} middle>
-          <Lunettes />
-        </Cell>
-      </Container>
-    </Tablet>
-    <Desktop>
-      <Container alignContent="center">
-        <Cell width={3} left={3} middle>
-          <SectionOneContent />
-        </Cell>
-        <Cell width={3} left={8} middle>
-          <Lunettes />
-        </Cell>
-      </Container>
-    </Desktop>
-  </React.Fragment>
-);
-
-const SectionTwoContent = () => (
-  <div>
-    <Heading is="h2">Le cocktail idéal</Heading>
-    <Paragraph is="strong" fontWeight="700">
-      Webdesign, print, identités visuelles, formation, illustration, lettering,
-      motion design…
-    </Paragraph>
-    <Paragraph>
-      J’ai les ingrédients qui me permettent de vous proposer le cocktail idéal
-      pour vos créations graphiques.
-    </Paragraph>
-
-    <ButtonLink label="découvrir mes compétences" to="/skills" />
-  </div>
+  <SectionOneWrapper is="section" mb={6}>
+    <Heading className="section--title" is="h2" mb={0}>
+      Voir et être vu
+    </Heading>
+    <Box className="section--content" textAlign="center">
+      <Paragraph>
+        <strong>
+          Vous êtes une entreprise, une association ou une administration,
+        </strong>{' '}
+        et vous souhaitez asseoir ou accroître votre visibilité grâce à vos
+        supports de communication ?
+      </Paragraph>
+      <Paragraph mb={0}>
+        <strong>Vous êtes une agence,</strong> et vous avez besoin de visibilité
+        sur vos projets en vous appuyant sur un freelance disponible rapidement
+        ?
+      </Paragraph>
+    </Box>
+    <ButtonLink className="section--btn" label="contactez-moi" to="/contact" />
+    <Lunettes className="section-illustration" />
+  </SectionOneWrapper>
 );
 
 const SectionTwo = () => (
-  <React.Fragment>
-    <Mobile>
-      <Box py={[6, 8]}>
-        <Container
-          height="auto"
-          rows={'250px minmax(min-content, max-content)'}
-        >
-          <Cell width={4} left={2} middle>
-            <Cocktail />
-          </Cell>
-          <Cell width={6} center>
-            <SectionTwoContent />
-          </Cell>
-        </Container>
-      </Box>
-    </Mobile>
-    <Tablet>
-      <Container height="auto" alignContent="center">
-        <Cell width={4} middle>
-          <Cocktail />
-        </Cell>
-        <Cell width={6} left={6} middle>
-          <SectionTwoContent />
-        </Cell>
-      </Container>
-    </Tablet>
-    <Desktop>
-      <Container alignContent="center">
-        <Cell width={3} left={3} middle>
-          <Cocktail />
-        </Cell>
-        <Cell width={3} left={8} middle>
-          <SectionTwoContent />
-        </Cell>
-      </Container>
-    </Desktop>
-  </React.Fragment>
+  <SectionTwoWrapper is="section" mb={6}>
+    <Heading className="section--title" is="h2">
+      Le cocktail idéal
+    </Heading>
+    <Box className="section--content" textAlign="center">
+      <Paragraph is="strong" fontWeight="700">
+        Webdesign, print, identités visuelles, formation, illustration,
+        lettering, motion design…
+      </Paragraph>
+      <Paragraph>
+        J’ai les ingrédients qui me permettent de vous proposer le cocktail
+        idéal pour vos créations graphiques.
+      </Paragraph>
+    </Box>
+
+    <ButtonLink className="section--btn" label="mes compétences" to="/skills" />
+    <Cocktail className="section-illustration" />
+  </SectionTwoWrapper>
 );
 
 const RightDecoration = ({ svgRef, ...props }) => (
@@ -235,38 +195,24 @@ const LeftDecoration = ({ svgRef, ...props }) => (
   </DecorationWrapper>
 );
 
+const Projects = ({ projects }) => (
+  <div>
+    <Box textAlign="center" mb={5}>
+      <SurTitle label="Quoi de neuf ?" />
+      <Heading is="h2">Les derniers projets</Heading>
+    </Box>
+    {!!projects && <ProjectList projects={projects} />}
+  </div>
+);
 const IndexPage = ({ data }) => {
   const projects =
     data && data.allContentfulProject && data.allContentfulProject.edges;
   return (
     <div>
-      <Intro />
-      <Section>
-        <Mobile>
-          <RightDecoration top="0" width="60%" />
-        </Mobile>
-        <Default>
-          <RightDecoration width="35%" />
-        </Default>
-        <SectionOne />
-      </Section>
-      <Section>
-        <Mobile>
-          <LeftDecoration top="80px" width="60%" />
-        </Mobile>
-        <Default>
-          <LeftDecoration width="35%" />
-        </Default>
-
-        <SectionTwo />
-      </Section>
-      <Section>
-        <Box textAlign="center" mb={5}>
-          <SurTitle label="Quoi de neuf ?" />
-          <Heading is="h2">Les derniers projets</Heading>
-        </Box>
-        {!!projects && <ProjectList projects={projects} />}
-      </Section>
+      <Hero />
+      <SectionOne />
+      <SectionTwo />
+      <Projects projects={projects} />
       <ContaCta />
     </div>
   );

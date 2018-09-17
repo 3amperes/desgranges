@@ -7,25 +7,6 @@ import { Container, Cell, Text, Link, Default, Mobile } from 'components';
 import { transition } from 'utils/mixins';
 import { ZINDEXBASE } from 'utils/constants';
 
-const NavWrapper = styled.nav`
-  position: fixed;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-  ${color}
-  padding-right: ${props => props.scrollWidth}px;
-
-  z-index: ${ZINDEXBASE + 20};
-
-  a {
-    ${transition({ property: 'color' })};
-    &:hover, &:focus {
-      color: ${themeGet('colors.white')};
-    }
-  }
-`;
-
 const navItems = [
   {
     ref: 'home',
@@ -61,32 +42,47 @@ const defaultStyle = {
   transform: 'translate(0) skewX(0)',
 };
 
+const Wrapper = styled.nav`
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  padding-right: ${props => props.scrollWidth}px;
+  display: grid;
+  grid-gap: 60px;
+  align-content: center;
+  z-index: ${ZINDEXBASE + 20};
+  ${color};
+
+  a {
+    ${transition({ property: 'color' })};
+    &:hover,
+    &:focus {
+      color: ${themeGet('colors.white')};
+    }
+  }
+`;
+
 class NavItem extends Component {
   renderNav = () => {
     const { label, innerRef, ...linkProps } = this.props;
     return (
       <div ref={innerRef} style={defaultStyle}>
-        <Text fontWeight="700" letterSpacing="4px" fontSize={3} isUppercase>
+        <Text
+          fontWeight="700"
+          letterSpacing="4px"
+          fontSize={3}
+          textAlign="center"
+          isUppercase
+        >
           <Link {...linkProps}>{label}</Link>
         </Text>
       </div>
     );
   };
   render() {
-    return (
-      <React.Fragment>
-        <Mobile>
-          <Cell height={1} width={6} center middle>
-            {this.renderNav()}
-          </Cell>
-        </Mobile>
-        <Default>
-          <Cell height={1} width={8} left={3} center middle>
-            {this.renderNav()}
-          </Cell>
-        </Default>
-      </React.Fragment>
-    );
+    return this.renderNav();
   }
 }
 class Navigation extends Component {
@@ -147,19 +143,17 @@ class Navigation extends Component {
       >
         {state => (
           <div ref={el => (this.wrapper = el)} style={{ opacity: 1 }}>
-            <NavWrapper color="black" bg="salmon" scrollWidth={scrollWidth}>
-              <Container height="100%" rows="repeat(5, 64px)">
-                {navItems.map(item => (
-                  <NavItem
-                    innerRef={el => (this[item.ref] = el)}
-                    key={item.ref}
-                    onClick={onClose}
-                    to={item.to}
-                    label={item.label}
-                  />
-                ))}
-              </Container>
-            </NavWrapper>
+            <Wrapper color="black" bg="salmon" scrollWidth={scrollWidth}>
+              {navItems.map(item => (
+                <NavItem
+                  innerRef={el => (this[item.ref] = el)}
+                  key={item.ref}
+                  onClick={onClose}
+                  to={item.to}
+                  label={item.label}
+                />
+              ))}
+            </Wrapper>
           </div>
         )}
       </Transition>

@@ -1,36 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Box,
-  Button,
-  CtaLink,
-  Logotype,
-  Grid,
-  Cell,
-  Default,
-  Mobile,
-} from 'components';
+import { Button, CtaLink, Logotype } from 'components';
 import { AnimatedLink } from 'components/layout/AnimatedScreen';
-import { absolute } from 'utils/mixins';
-import { ZINDEXBASE, SIZES } from 'utils/constants';
+import { media } from 'utils/mixins';
+import { SIZES, ZINDEXBASE } from 'utils/constants';
 
-const HeaderInner = styled.header`
-  ${absolute({ top: 0, left: 0 })}
+const padding = 60;
+
+const Wrapper = styled.header`
   height: ${SIZES.NAVBAR}px;
   width: 100%;
-  padding: 0 60px;
-  display: flex;
+  display: grid;
+  padding: 0 ${padding}px;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
+  align-content: center;
+  justify-items: center;
   align-items: center;
-  padding-right: ${props => props.scrollWidth + 60}px;
+  padding-right: ${props => props.scrollWidth + padding}px;
+  position: relative;
   z-index: ${ZINDEXBASE + 30};
+
+  .menu-btn {
+    &-mobile {
+      ${media.tablet`display: none;`};
+    }
+
+    &-desktop {
+      display: none;
+      justify-self: start;
+      ${media.tablet`display: inline-block;`};
+    }
+  }
+
+  .contact-btn {
+    display: none;
+    justify-self: end;
+    transform: translateX(${padding}px);
+    ${media.tablet`display: inline-block;`};
+    ${media.desktop`transform: none;`};
+  }
 `;
 
 const LogoLink = styled(AnimatedLink)`
+  display: block;
+  text-align: center;
   margin: auto;
+  justify-self: center;
+  grid-column: 2 / 2;
 `;
 
-const MenuButtonWrapper = styled.div`
+const MenuButtonWrapper = styled.button`
+  border: 0;
   position: absolute;
   left: 15px;
 `;
@@ -55,43 +76,22 @@ const MenuButton = ({ isMenuOpened, ...otherProps }) => (
 );
 
 const Header = ({ isMenuOpened, onToggleMenu, scrollWidth }) => (
-  <HeaderInner scrollWidth={scrollWidth}>
-    <Mobile>
-      <MenuButton isMenuOpened={isMenuOpened} onClick={onToggleMenu} />
-      <LogoLink to="/">
-        <Logotype color="gray.dark" />
-      </LogoLink>
-    </Mobile>
-    <Default>
-      <Box width="100%">
-        <Grid
-          rows={`${SIZES.NAVBAR}px`}
-          height="100%"
-          columns={'205px 1fr 205px'}
-          gap="0"
-        >
-          <Cell middle>
-            <Box>
-              <Button
-                onClick={onToggleMenu}
-                label={isMenuOpened ? 'fermer' : 'menu'}
-              />
-            </Box>
-          </Cell>
-          <Cell middle>
-            <LogoLink to="/">
-              <Logotype color="gray.dark" />
-            </LogoLink>
-          </Cell>
-          <Cell middle>
-            <Box>
-              <CtaLink label="Contactez-moi" to="/contact" />
-            </Box>
-          </Cell>
-        </Grid>
-      </Box>
-    </Default>
-  </HeaderInner>
+  <Wrapper scrollWidth={scrollWidth}>
+    <MenuButton
+      className="menu-btn-mobile"
+      isMenuOpened={isMenuOpened}
+      onClick={onToggleMenu}
+    />
+    <Button
+      className="menu-btn-desktop"
+      onClick={onToggleMenu}
+      label={isMenuOpened ? 'fermer' : 'menu'}
+    />
+    <LogoLink to="/">
+      <Logotype color="gray.dark" />
+    </LogoLink>
+    <CtaLink className="contact-btn" label="Contactez-moi" to="/contact" />
+  </Wrapper>
 );
 
 export default Header;
